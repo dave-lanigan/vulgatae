@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "build": "nuxt build && cp server/public/db.sqlite3 .output/server/chunks/db.sqlite3",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
