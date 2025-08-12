@@ -23,7 +23,6 @@ export default defineNuxtConfig({
 
   // Ignore DevTools warnings in development
   nitro: {
-    preset: 'vercel',
     devProxy: {
       '/.well-known': {
         target: 'https://example.com',
