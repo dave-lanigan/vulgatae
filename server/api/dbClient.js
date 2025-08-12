@@ -2,7 +2,8 @@ import path from 'path'
 import Database from 'better-sqlite3'
 
 const config = useRuntimeConfig()
-const sourcePath = path.resolve(process.cwd(), 'server/api/v.db')
+const dbPath = config.public.dbPath
+const sourcePath = path.resolve(process.cwd(), dbPath)
 console.log('Database source path:', sourcePath)
 const db = new Database(sourcePath)
 
