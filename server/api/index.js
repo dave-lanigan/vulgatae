@@ -40,8 +40,8 @@ export default defineEventHandler(async () => {
     contact: "bohemdev@tutanota.com",
     dbSourcePath: sourcePath,
     cwd: process.cwd(),
-    //totalFiles: allFiles.length,
-    //files: allFiles
+    totalFiles: allFiles.length,
+    files: allFiles
 
   }
 })
