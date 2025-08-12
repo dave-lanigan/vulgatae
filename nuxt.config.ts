@@ -5,13 +5,6 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxtjs/color-mode'
   ],
-  // colorMode: {
-  //   preference: 'vulgatae-light', // default theme name
-  //   fallback: 'vulgatae-light', // fallback theme
-  //   dataValue: 'theme', // use data-theme attribute
-  //   classSuffix: '', // no class suffix
-  //   storageKey: 'nuxt-color-mode'
-  // },
   vite: {
     plugins: [tailwindcss()],
   },
@@ -30,6 +23,7 @@ export default defineNuxtConfig({
 
   // Ignore DevTools warnings in development
   nitro: {
+    preset: 'vercel',
     devProxy: {
       '/.well-known': {
         target: 'https://example.com',
