@@ -1,0 +1,540 @@
+[
+    {
+        "number": 1,
+        "title": "Genesis",
+        "titleLatin": "Genesis",
+        "numberOfChapters": 50,
+        "numberOfVerses": 1533
+    },
+    {
+        "number": 2,
+        "title": "Exodus",
+        "titleLatin": "Exodus",
+        "numberOfChapters": 40,
+        "numberOfVerses": 1213
+    },
+    {
+        "number": 3,
+        "title": "Leviticus",
+        "titleLatin": "Leviticus",
+        "numberOfChapters": 27,
+        "numberOfVerses": 859
+    },
+    {
+        "number": 4,
+        "title": "Numbers",
+        "titleLatin": "Numeri",
+        "numberOfChapters": 36,
+        "numberOfVerses": 1288
+    },
+    {
+        "number": 5,
+        "title": "Deuteronomy",
+        "titleLatin": "Deuteronomium",
+        "numberOfChapters": 34,
+        "numberOfVerses": 959
+    },
+    {
+        "number": 6,
+        "title": "Josue",
+        "altTitle": "Joshua",
+        "titleLatin": "Iosue",
+        "numberOfChapters": 24,
+        "numberOfVerses": 658
+    },
+    {
+        "number": 7,
+        "title": "Judges",
+        "titleLatin": "Iudicum",
+        "numberOfChapters": 21,
+        "numberOfVerses": 618
+    },
+    {
+        "number": 8,
+        "title": "Ruth",
+        "titleLatin": "Ruth",
+        "numberOfChapters": 4,
+        "numberOfVerses": 85
+    },
+    {
+        "number": 9,
+        "title": "1 Kings",
+        "altTitle": "1 Samuel",
+        "titleLatin": "1 Regum",
+        "numberOfChapters": 31,
+        "numberOfVerses": 810
+    },
+    {
+        "number": 10,
+        "title": "2 Kings",
+        "altTitle": "2 Samuel",
+        "titleLatin": "2 Regum",
+        "numberOfChapters": 24,
+        "numberOfVerses": 695
+    },
+    {
+        "number": 11,
+        "title": "3 Kings",
+        "altTitle": "1 Kings",
+        "titleLatin": "3 Regum",
+        "numberOfChapters": 22,
+        "numberOfVerses": 816
+    },
+    {
+        "number": 12,
+        "title": "4 Kings",
+        "altTitle": "2 Kings",
+        "titleLatin": "4 Regum",
+        "numberOfChapters": 25,
+        "numberOfVerses": 719
+    },
+    {
+        "number": 13,
+        "title": "1 Paralipomenon",
+        "altTitle": "1 Chronicles",
+        "titleLatin": "1 Paralipomenon",
+        "numberOfChapters": 29,
+        "numberOfVerses": 942
+    },
+    {
+        "number": 14,
+        "title": "2 Paralipomenon",
+        "altTitle": "2 Chronicles",
+        "titleLatin": "2 Paralipomenon",
+        "numberOfChapters": 36,
+        "numberOfVerses": 822
+    },
+    {
+        "number": 15,
+        "title": "1 Esdras",
+        "altTitle": "1 Ezra",
+        "titleLatin": "1 Esdrae",
+        "numberOfChapters": 10,
+        "numberOfVerses": 280
+    },
+    {
+        "number": 16,
+        "title": "2 Esdras",
+        "altTitle": "Nehemiah",
+        "titleLatin": "2 Esdrae",
+        "numberOfChapters": 13,
+        "numberOfVerses": 406
+    },
+    {
+        "number": 17,
+        "title": "Tobias",
+        "altTitle": "Tobit",
+        "titleLatin": "Tobiae",
+        "numberOfChapters": 14,
+        "numberOfVerses": 291
+    },
+    {
+        "number": 18,
+        "title": "Judith",
+        "titleLatin": "Iudith",
+        "numberOfChapters": 16,
+        "numberOfVerses": 339
+    },
+    {
+        "number": 19,
+        "title": "Esther",
+        "titleLatin": "Esther",
+        "numberOfChapters": 16,
+        "numberOfVerses": 167
+    },
+    {
+        "number": 20,
+        "title": "Job",
+        "titleLatin": "Iob",
+        "numberOfChapters": 42,
+        "numberOfVerses": 1070
+    },
+    {
+        "number": 21,
+        "title": "Psalms",
+        "titleLatin": "Psalmi",
+        "numberOfChapters": 150,
+        "numberOfVerses": 150
+    },
+    {
+        "number": 22,
+        "title": "Proverbs",
+        "titleLatin": "Proverbiorum",
+        "numberOfChapters": 31,
+        "numberOfVerses": 117
+    },
+    {
+        "number": 23,
+        "title": "Ecclesiastes",
+        "titleLatin": "Ecclesiastes",
+        "numberOfChapters": 12,
+        "numberOfVerses": 915
+    },
+    {
+        "number": 24,
+        "title": "Canticles",
+        "altTitle": "Song of Solomon",
+        "titleLatin": "Canticum Canticorum",
+        "numberOfChapters": 8,
+        "numberOfVerses": 222
+    },
+    {
+        "number": 25,
+        "title": "Wisdom",
+        "titleLatin": "Sapientia",
+        "numberOfChapters": 19,
+        "numberOfVerses": 117
+    },
+    {
+        "number": 26,
+        "title": "Ecclesiasticus",
+        "altTitle": "Sirach",
+        "titleLatin": "Ecclesiasticus",
+        "numberOfChapters": 51,
+        "numberOfVerses": 1364
+    },
+    {
+        "number": 27,
+        "title": "Isaias",
+        "altTitle": "Isaiah",
+        "titleLatin": "Isaiae",
+        "numberOfChapters": 66,
+        "numberOfVerses": 459
+    },
+    {
+        "number": 28,
+        "title": "Jeremias",
+        "altTitle": "Jeremiah",
+        "titleLatin": "Ieremiae",
+        "numberOfChapters": 52,
+        "numberOfVerses": 813
+    },
+    {
+        "number": 29,
+        "title": "Lamentations",
+        "titleLatin": "Lamentationes",
+        "numberOfChapters": 5,
+        "numberOfVerses": 21
+    },
+    {
+        "number": 30,
+        "title": "Baruch",
+        "titleLatin": "Baruch",
+        "numberOfChapters": 6,
+        "numberOfVerses": 355
+    },
+    {
+        "number": 31,
+        "title": "Ezechiel",
+        "altTitle": "Ezekiel",
+        "titleLatin": "Ezechielis",
+        "numberOfChapters": 48,
+        "numberOfVerses": 48
+    },
+    {
+        "number": 32,
+        "title": "Daniel",
+        "titleLatin": "Danielis",
+        "numberOfChapters": 14,
+        "numberOfVerses": 39
+    },
+    {
+        "number": 33,
+        "title": "Osee",
+        "altTitle": "Hosea",
+        "titleLatin": "Osee",
+        "numberOfChapters": 14,
+        "numberOfVerses": 218
+    },
+    {
+        "number": 34,
+        "title": "Joel",
+        "titleLatin": "Ioel",
+        "numberOfChapters": 3,
+        "numberOfVerses": 47
+    },
+    {
+        "number": 35,
+        "title": "Amos",
+        "titleLatin": "Amos",
+        "numberOfChapters": 9,
+        "numberOfVerses": 21
+    },
+    {
+        "number": 36,
+        "title": "Abdias",
+        "altTitle": "Obadiah",
+        "titleLatin": "Abdiae",
+        "numberOfChapters": 1,
+        "numberOfVerses": 38
+    },
+    {
+        "number": 37,
+        "title": "Jonas",
+        "altTitle": "Jonah",
+        "titleLatin": "Ionae",
+        "numberOfChapters": 4,
+        "numberOfVerses": 56
+    },
+    {
+        "number": 38,
+        "title": "Micheas",
+        "altTitle": "Micah",
+        "titleLatin": "Michaeae",
+        "numberOfChapters": 7,
+        "numberOfVerses": 104
+    },
+    {
+        "number": 39,
+        "title": "Nahum",
+        "titleLatin": "Nahum",
+        "numberOfChapters": 3,
+        "numberOfVerses": 55
+    },
+    {
+        "number": 40,
+        "title": "Habacuc",
+        "altTitle": "Habakkuk",
+        "titleLatin": "Habacuc",
+        "numberOfChapters": 3,
+        "numberOfVerses": 14
+    },
+    {
+        "number": 41,
+        "title": "Sophonias",
+        "altTitle": "Zephaniah",
+        "titleLatin": "Sophoniae",
+        "numberOfChapters": 3,
+        "numberOfVerses": 1071
+    },
+    {
+        "number": 42,
+        "title": "Aggeus",
+        "altTitle": "Haggai",
+        "titleLatin": "Aggaei",
+        "numberOfChapters": 2,
+        "numberOfVerses": 31
+    },
+    {
+        "number": 43,
+        "title": "Zacharias",
+        "altTitle": "Zechariah",
+        "titleLatin": "Zachariae",
+        "numberOfChapters": 14,
+        "numberOfVerses": 978
+    },
+    {
+        "number": 44,
+        "title": "Malachias",
+        "altTitle": "Malachi",
+        "titleLatin": "Malachiae",
+        "numberOfChapters": 4,
+        "numberOfVerses": 66
+    },
+    {
+        "number": 45,
+        "title": "1 Machabees",
+        "altTitle": "1 Maccabees",
+        "titleLatin": "1 Maccabaeorum",
+        "numberOfChapters": 16,
+        "numberOfVerses": 24
+    },
+    {
+        "number": 46,
+        "title": "2 Machabees",
+        "altTitle": "2 Maccabees",
+        "titleLatin": "2 Maccabaeorum",
+        "numberOfChapters": 15,
+        "numberOfVerses": 21
+    },
+    {
+        "number": 47,
+        "title": "Matthew",
+        "titleLatin": "Matthaeus",
+        "numberOfChapters": 28,
+        "numberOfVerses": 104
+    },
+    {
+        "number": 48,
+        "title": "Mark",
+        "titleLatin": "Marcus",
+        "numberOfChapters": 16,
+        "numberOfVerses": 55
+    },
+    {
+        "number": 49,
+        "title": "Luke",
+        "titleLatin": "Lucas",
+        "numberOfChapters": 24,
+        "numberOfVerses": 25
+    },
+    {
+        "number": 50,
+        "title": "John",
+        "titleLatin": "Ioannes",
+        "numberOfChapters": 21,
+        "numberOfVerses": 31
+    },
+    {
+        "number": 51,
+        "title": "Acts of Apostles",
+        "altTitle": "Acts",
+        "titleLatin": "Actus Apostolorum",
+        "numberOfChapters": 28,
+        "numberOfVerses": 150
+    },
+    {
+        "number": 52,
+        "title": "Romans",
+        "titleLatin": "Romanos",
+        "numberOfChapters": 16,
+        "numberOfVerses": 89
+    },
+    {
+        "number": 53,
+        "title": "1 Corinthians",
+        "titleLatin": "1 Corinthios",
+        "numberOfChapters": 16,
+        "numberOfVerses": 83
+    },
+    {
+        "number": 54,
+        "title": "2 Corinthians",
+        "titleLatin": "2 Corinthios",
+        "numberOfChapters": 13,
+        "numberOfVerses": 34
+    },
+    {
+        "number": 55,
+        "title": "Galatians",
+        "titleLatin": "Galatas",
+        "numberOfChapters": 6,
+        "numberOfVerses": 14
+    },
+    {
+        "number": 56,
+        "title": "Ephesians",
+        "titleLatin": "Ephesios",
+        "numberOfChapters": 6,
+        "numberOfVerses": 16
+    },
+    {
+        "number": 57,
+        "title": "Philippians",
+        "titleLatin": "Philippenses",
+        "numberOfChapters": 4,
+        "numberOfVerses": 15
+    },
+    {
+        "number": 58,
+        "title": "Colossians",
+        "titleLatin": "Colossenses",
+        "numberOfChapters": 4,
+        "numberOfVerses": 57
+    },
+    {
+        "number": 59,
+        "title": "1 Thessalonians",
+        "titleLatin": "1 Thessalonicenses",
+        "numberOfChapters": 5,
+        "numberOfVerses": 21
+    },
+    {
+        "number": 60,
+        "title": "2 Thessalonians",
+        "titleLatin": "2 Thessalonicenses",
+        "numberOfChapters": 3,
+        "numberOfVerses": 70
+    },
+    {
+        "number": 61,
+        "title": "1 Timothy",
+        "titleLatin": "1 Timotheum",
+        "numberOfChapters": 6,
+        "numberOfVerses": 13
+    },
+    {
+        "number": 62,
+        "title": "2 Timothy",
+        "titleLatin": "2 Timotheum",
+        "numberOfChapters": 4,
+        "numberOfVerses": 92
+    },
+    {
+        "number": 63,
+        "title": "Titus",
+        "titleLatin": "Titum",
+        "numberOfChapters": 3,
+        "numberOfVerses": 18
+    },
+    {
+        "number": 64,
+        "title": "Philemon",
+        "titleLatin": "Philemonem",
+        "numberOfChapters": 1,
+        "numberOfVerses": 40
+    },
+    {
+        "number": 65,
+        "title": "Hebrews",
+        "titleLatin": "Hebraeos",
+        "numberOfChapters": 13,
+        "numberOfVerses": 23
+    },
+    {
+        "number": 66,
+        "title": "James",
+        "titleLatin": "Iacobi",
+        "numberOfChapters": 5,
+        "numberOfVerses": 16
+    },
+    {
+        "number": 67,
+        "title": "1 Peter",
+        "titleLatin": "1 Petri",
+        "numberOfChapters": 5,
+        "numberOfVerses": 25
+    },
+    {
+        "number": 68,
+        "title": "2 Peter",
+        "titleLatin": "2 Petri",
+        "numberOfChapters": 3,
+        "numberOfVerses": 105
+    },
+    {
+        "number": 69,
+        "title": "1 John",
+        "titleLatin": "1 Ioannis",
+        "numberOfChapters": 5,
+        "numberOfVerses": 13
+    },
+    {
+        "number": 70,
+        "title": "2 John",
+        "titleLatin": "2 Ioannis",
+        "numberOfChapters": 1,
+        "numberOfVerses": 15
+    },
+    {
+        "number": 71,
+        "title": "3 John",
+        "titleLatin": "3 Ioannis",
+        "numberOfChapters": 1,
+        "numberOfVerses": 14
+    },
+    {
+        "number": 72,
+        "title": "Jude",
+        "titleLatin": "Iudae",
+        "numberOfChapters": 1,
+        "numberOfVerses": 25
+    },
+    {
+        "number": 73,
+        "title": "Apocalypse",
+        "titleLatin": "Apocalypsis",
+        "numberOfChapters": 22,
+        "numberOfVerses": 404
+    }
+]
