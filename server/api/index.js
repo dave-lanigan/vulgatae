@@ -22,6 +22,11 @@ function getAllFiles(dirPath, arrayOfFiles = []) {
 }
 
 export default defineEventHandler(() => {
+  
+  const config = useRuntimeConfig()
+  const dbPath = config.public.dbPath
+  const sourcePath = path.resolve(process.cwd(), dbPath)
+  
   // Get all files in the project
   const allFiles = getAllFiles(process.cwd())
   
@@ -33,7 +38,9 @@ export default defineEventHandler(() => {
     aboutAPI: "API for the Vulgate/Douay-Rheims Bible",
     about: "The Vulgate is a version of the Bible",
     contact: "bohemdev@tutanota.com",
+    dbSourcePath: sourcePath,
     totalFiles: allFiles.length,
     files: allFiles
+
   }
 })
