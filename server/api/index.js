@@ -17,12 +17,12 @@ function getAllFiles(dirPath, arrayOfFiles = []) {
       arrayOfFiles.push(fullPath)
     }
   })
-  
+
   return arrayOfFiles
 }
 
-export default defineEventHandler(() => {
-  
+export default defineEventHandler(async () => {
+
   const config = useRuntimeConfig()
   const dbPath = config.public.dbPath
   const sourcePath = path.resolve(process.cwd(), dbPath)
@@ -39,8 +39,9 @@ export default defineEventHandler(() => {
     about: "The Vulgate is a version of the Bible",
     contact: "bohemdev@tutanota.com",
     dbSourcePath: sourcePath,
-    totalFiles: allFiles.length,
-    files: allFiles
+    cwd: process.cwd(),
+    //totalFiles: allFiles.length,
+    //files: allFiles
 
   }
 })
