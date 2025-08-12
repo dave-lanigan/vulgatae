@@ -1,10 +1,6 @@
-import Database from 'better-sqlite3'
+import db from './dbClient.js'
 
 export default defineEventHandler((event) => {
-  // Use the runtime config for database path
-  const config = useRuntimeConfig()
-  const db = new Database(config.public.dbPath)
-  
   const books = db.prepare('SELECT * FROM books').all()
   
   // Map database column names to frontend property names

@@ -1,11 +1,7 @@
-import Database from 'better-sqlite3'
+import db from '../dbClient.js'
 
 export default defineEventHandler((event) => {
   const { book } = event.context.params
-  
-  // Use the runtime config for database path
-  const config = useRuntimeConfig()
-  const db = new Database(config.public.dbPath)
   
   const result = db.prepare('SELECT * FROM books WHERE number = ?').get(book)
   

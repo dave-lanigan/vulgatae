@@ -1,11 +1,7 @@
-import Database from 'better-sqlite3'
+import db from '../../dbClient.js'
 
 export default defineEventHandler((event) => {
   const { book } = event.context.params;
-  
-  // Use the runtime config for database path
-  const config = useRuntimeConfig()
-  const db = new Database(config.public.dbPath)
   
   const stmt = db.prepare(`
     SELECT c.*, c.chapter as number, COUNT(v.chapter) as verseCount
