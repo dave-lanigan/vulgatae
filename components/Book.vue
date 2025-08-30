@@ -52,12 +52,13 @@ defineProps({
 }
 
 .book-card svg {
-  color: #f3f4f6; /* even lighter gray */
+  color: #f3f4f6;
   transition: color 0.2s ease;
 }
 
 .book-card:hover svg {
-  color: oklch(77% 0.152 181.912);
+  /* color: oklch(77% 0.152 181.912); */
+  color: oklch(60% 0.118 184.704);
 }
 
 .book-card span {
@@ -67,6 +68,4 @@ defineProps({
 .book-card:hover span {
   color: hsl(var(--pc)) !important;
 }
-
-
 </style>
