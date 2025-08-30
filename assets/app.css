@@ -2,3 +2,22 @@
 @import "tailwindcss";
 @plugin "daisyui";
 @import "./themes.css";
+
+/* Global font settings for HTML tags */
+body {
+  font-family: 'EB Garamond', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'EB Garamond', serif;
+  font-weight: 600;
+}
+
+p {
+  font-family: 'Crimson Text', serif;
+}
+
+blockquote {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+}

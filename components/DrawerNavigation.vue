@@ -1,7 +1,7 @@
 <template>
   <div class="drawer">
     <input id="bible-drawer" type="checkbox" class="drawer-toggle" ref="drawerToggle" />
-    <div class="drawer-content bg-base-100">
+    <div class="drawer-content bg-white">
       <!-- Page content here -->
       <slot />
     </div>
@@ -11,14 +11,14 @@
         <!-- Bible Navigation -->
         <div class="mb-4 flex-shrink-0">
           <h2 class="text-lg font-bold mb-2">Vulgate Bible</h2>
-          <div class="form-control">
+          <!-- <div class="form-control">
             <input 
               type="text" 
               placeholder="Search books..." 
-              class="input input-bordered input-sm mb-3"
+              class="input input-ghost input-sm mb-2 mt-2"
               v-model="searchQuery"
             />
-          </div>
+          </div> -->
         </div>
         
         <!-- Loading state -->
@@ -28,25 +28,26 @@
         
         <!-- Books list -->
         <div v-else-if="books" class="space-y-1 flex-1 overflow-y-auto">
-          <div class="text-xs text-gray-500 mb-2">Found {{ filteredBooks.length }} books</div>
           <div v-for="book in filteredBooks" :key="book.number" class="border border-base-300 rounded-lg mb-2">
+            
+            <!-- Book Header - Collapsed -->
             <div 
               @click="toggleBook(book.number)" 
               class="cursor-pointer hover:bg-base-300 p-3 flex items-center justify-between"
             >
               <div class="flex items-center">
-                <Icon :name="expandedBooks[book.number] ? 'lucide:chevron-up' : 'lucide:chevron-down'" size="16" class="mr-2" />
-                <span class="text-xs font-medium">{{ book.title }} ({{ book.number }})</span>
+                <Icon :name="expandedBooks[book.number] ? 'lucide:book' : 'lucide:book'" size="16" class="mr-2" />
+                <span class="text-md font-medium">{{ book.title }}</span>
               </div>
-              <span class="badge badge-xs">{{ getChapterCount(book.number) }}</span>
+              <Icon :name="expandedBooks[book.number] ? 'lucide:chevron-up' : 'lucide:chevron-down'" size="16" class="mr-2" />
             </div>
-            
+
+            <!-- Book Header - Expanded -->
             <div v-if="expandedBooks[book.number]" class="p-2 border-t border-base-300">
               <div v-if="loadingChapters[book.number]" class="flex justify-center py-2">
                 <span class="loading loading-spinner loading-sm"></span>
               </div>
               <div v-else-if="chapters[book.number]" class="space-y-1">
-                <div class="text-xs text-gray-500 mb-1">{{ chapters[book.number].length }} chapters</div>
                 <div v-for="chapter in chapters[book.number]" :key="chapter.number" 
                      class="border border-base-200 rounded mb-1">
                   <div 
@@ -54,10 +55,10 @@
                     class="cursor-pointer hover:bg-base-200 p-2 flex items-center justify-between"
                   >
                     <div class="flex items-center">
-                      <Icon :name="expandedChapters[`${book.number}-${chapter.number}`] ? 'lucide:chevron-up' : 'lucide:chevron-down'" size="14" class="mr-1" />
+                      <Icon name="lucide:book-open" size="14" class="mr-2" />
                       <span class="text-xs">Chapter {{ chapter.number }}</span>
                     </div>
-                    <span class="badge badge-xs">{{ getVerseCount(book.number, chapter.number) }}</span>
+                    <Icon :name="expandedChapters[`${book.number}-${chapter.number}`] ? 'lucide:chevron-up' : 'lucide:chevron-down'" size="14" class="mr-1" />
                   </div>
                   
                   <div v-if="expandedChapters[`${book.number}-${chapter.number}`]" class="p-2 border-t border-base-200">
@@ -65,18 +66,20 @@
                       <span class="loading loading-spinner loading-xs"></span>
                     </div>
                     <div v-else-if="verses[`${book.number}-${chapter.number}`]" class="space-y-1">
-                      <div class="text-xs text-gray-500 mb-1">{{ verses[`${book.number}-${chapter.number}`].length }} verses</div>
-                      <div v-for="verse in verses[`${book.number}-${chapter.number}`]" :key="verse.number" 
-                           class="border border-base-100 rounded">
+                      <div v-for="verse in verses[`${book.number}-${chapter.number}`]" :key="verse.number">
                         <NuxtLink 
                           :to="`/books/${book.number}/chapters/${chapter.number}#verse-${verse.number}`"
-                          class="cursor-pointer hover:bg-base-100 p-2 flex items-start w-full text-left"
+                          class="cursor-pointer hover:bg-base-100 p-2 flex items-center justify-between w-full"
                           @click="closeDrawer"
                         >
-                          <span class="text-xs">
-                            <span class="font-bold">{{ verse.number }}</span>
-                            <span class="italic ml-1">{{ verse.english?.split(' ').slice(0, 4).join(' ') }}...</span>
-                          </span>
+                        <div class="flex items-center">
+                          <Icon name="lucide:book-open-check" size="12" class="mr-2" />
+                            <span class="text-xs">
+                              <span class="font-bold">Verse {{ verse.number }}</span>
+                              <span class="italic ml-1">{{ verse.english?.split(' ').slice(0, 4).join(' ') }}...</span>
+                            </span>
+                        </div>
+                        <Icon name="lucide:arrow-right" size="12"/>
                         </NuxtLink>
                       </div>
                     </div>
