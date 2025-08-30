@@ -1,5 +1,8 @@
 <template>
-    <NuxtLink :to="`/books/${book.number}/chapters`" class="book-card group w-full min-h-20 flex items-center p-4 rounded-lg transition-all duration-200 gap-4">
+    <NuxtLink 
+      :to="`/books/${book.number}/chapters`"
+      class="book-card group w-full min-h-20 flex items-center p-4 rounded-lg transition-all duration-200 gap-4">
+        
         <!-- Book Icon -->
         <div class="w-14 h-14 relative text-neutral">
             <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full">

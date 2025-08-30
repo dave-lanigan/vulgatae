@@ -1,10 +1,18 @@
+<!--
+Options for verse:
+- Copy Text (Latin and English)
+- Copy link
+- Save
+- Commentary
+-->
+
 <template>
   <div :id="`verse-${verse.verse}`" class="flex flex-col sm:flex-row items-stretch min-h-full w-full m-2 verse-container">
     
     <!-- Icons Container -->
     <div class="options-sidebar flex flex-row sm:flex-col gap-2 sm:gap-1 sm:mb-0">
       <div class="sidebar-option" title="Verse Reference">
-        <span class="text-gray-400 text-lg">{{ verse.chapter }}:{{ verse.verse }}</span>
+        <span class="text-black text-lg">{{ verse.chapter }}:{{ verse.verse }}</span>
       </div>
       <div class="sidebar-option cursor-pointer hover:text-blue-600" title="Copy Link to Verse" @click="copyVerseLink">
         <Icon name="lucide:copy" size="16" class="text-gray-400 hover:text-blue-600" />
@@ -110,8 +118,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Crimson+Text:wght@400;600&display=swap');
-
 .verse-container {
   transition: all 0.3s ease;
   scroll-margin-top: 2rem;

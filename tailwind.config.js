@@ -9,7 +9,13 @@ export default {
     "./error.vue"
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'primary': ['EB Garamond', 'serif'],
+        'secondary': ['Crimson Text', 'serif'],
+        'serif': ['EB Garamond', 'Crimson Text', 'serif'],
+      },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {

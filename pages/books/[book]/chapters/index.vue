@@ -3,7 +3,6 @@
     
     <!-- Navigation -->
     <div class="pt-4 pb-4 justify-between bg-base-100 shadow-md overflow-x-hidden">
-    
       <div class="mx-auto flex items-center relative sm:static justify-between w-full max-w-screen-lg px-4">
         <!-- Back Arrow: always left -->
         <NuxtLink to="/" class="btn btn-ghost text-xs sm:text-sm md:text-base flex-shrink-0">
@@ -30,8 +29,8 @@
     
     </div>
     
-    <div class="flex justify-center">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 p-6 w-3/4">
+    <div class="container mx-auto p-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
         <Chapter v-for="chapter in chaptersWithBook" :key="chapter.number" :chapter="chapter" />
       </div>
     </div>

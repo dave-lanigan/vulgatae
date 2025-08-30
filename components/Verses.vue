@@ -1,12 +1,13 @@
 <template>
   <div class="w-5/6 xl:w-1/2 flex flex-col items-center font-serif">    
+
     <div role="tablist" class="font-serif tabs flex justify-center m-6 p-1 border-1 border-gray-200 rounded-full w-fit shadow-sm">
-      <a role="tab" class="tab text-xl" :class="{ 'tab-active': activeTab === 'verses' }" @click="activeTab = 'verses'">Verses</a>
-      <a role="tab" class="tab text-xl" :class="{ 'tab-active': activeTab === 'latin' }" @click="activeTab = 'latin'">Latin</a>
-      <a role="tab" class="tab text-xl" :class="{ 'tab-active': activeTab === 'english' }" @click="activeTab = 'english'">English</a>
+      <a role="tab" class="tab text-l" :class="{ 'tab-active': activeTab === 'verses' }" @click="activeTab = 'verses'">Verses</a>
+      <a role="tab" class="tab text-l" :class="{ 'tab-active': activeTab === 'latin' }" @click="activeTab = 'latin'">Latin</a>
+      <a role="tab" class="tab text-l" :class="{ 'tab-active': activeTab === 'english' }" @click="activeTab = 'english'">English</a>
     </div>
 
-    <h1 class="text-3xl font-bold m-12 text-center font-serif">{{ chapterHeader }}</h1>
+    <h1 class="text-2xl font-bold m-6 text-center font-serif">{{ chapterHeader }}</h1>
     
     <div v-if="activeTab === 'english'" class="text-justify max-w-4xl mx-auto">
       <p class="text-lg leading-8 font-serif" v-html="englishJoined"></p>
