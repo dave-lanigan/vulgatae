@@ -6,7 +6,7 @@
             </label>
         </div>
         <div class="flex-1">
-            <NuxtLink to="/" class="btn btn-ghost text-xl font-serif">vulgatae.com</NuxtLink>
+            <NuxtLink to="/" class="btn btn-ghost text-xl font-primary">vulgatae.com</NuxtLink>
         </div>
         <div class="flex-none pr-4" @click="$colorMode.preference = $colorMode.preference === 'vulgatae-light' ? 'vulgatae-dark' : 'vulgatae-light'">
             <label class="swap swap-rotate">
@@ -22,9 +22,4 @@
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Crimson+Text:wght@400;600&display=swap');
-
-.font-serif {
-  font-family: 'EB Garamond', serif;
-}
 </style>

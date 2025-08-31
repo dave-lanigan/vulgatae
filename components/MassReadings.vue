@@ -23,8 +23,11 @@
                     </div>
                     
                     <!-- Action -->
-                    <div class="card-actions justify-end">
-                        <button class="btn btn-ghost text-blue-950">Read Today's Readings ></button>
+                    <div class="card-actions justify-end text-primary">
+                        <button class="btn btn-ghost">
+                            Read Today's Readings
+                            <Icon name="mdi:chevron-right" size="20" />
+                        </button>
                     </div>
                 </div>
             </div>
@@ -33,6 +36,8 @@
 </template>
 
 <script setup>
+import { Icon } from '#components';
+
 
 const liturgicalSeason = ref('Tempus per Annum')
 const liturgicalInfo = ref('Feria Secunda, Hebdomada XXIII per Annum')

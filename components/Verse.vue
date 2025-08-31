@@ -67,6 +67,8 @@ const props = defineProps({
   }
 })
 
+console.log("Verse", props.verse)
+
 const route = useRoute()
 
 // Function to copy verse link to clipboard
