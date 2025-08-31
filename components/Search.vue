@@ -13,11 +13,18 @@
     
     <!-- Content -->
     <div class="relative z-10 text-center w-full mx-auto px-6">
+      
       <!-- Title -->
-      <h1 class="text-5xl md:text-6xl font-bold text-black mb-2 font-serif p-10">
+      <h1 class="text-5xl md:text-6xl font-bold text-black font-serif p-4">
         Vulgātae<span class="text-[#b6862c]">.</span>com
       </h1>
       
+      <!-- Rotating Subtitle -->
+      <div class="text-xl md:text-2xl text-gray-700 mb-6 font-serif min-h-[2rem] transition-opacity duration-300">
+        {{ currentRotatingText }}
+      </div>
+      
+
       <!-- Search Bar -->
       <div class="relative max-w-3xl mx-auto">
         <div class="flex items-center bg-white rounded-full overflow-hidden">
@@ -86,6 +93,17 @@ const searchResults = ref([])
 const isSearching = ref(false)
 let searchTimeout
 
+// Rotating text functionality
+const rotatingTexts = ['vulgatae', '/wʊlˈɡaː.te/', 'vool-GAH-teh']
+const currentRotatingText = ref(rotatingTexts[0])
+let rotationIndex = 0
+let rotationInterval
+
+function rotateText() {
+  rotationIndex = (rotationIndex + 1) % rotatingTexts.length
+  currentRotatingText.value = rotatingTexts[rotationIndex]
+}
+
 const quickSearches = ['amor', 'pax', 'veritas', 'vita', 'lux', 'caritas']
 
 async function performSearch() {
@@ -131,8 +149,19 @@ function handleDocClick(e) {
   if (!container) clearResults()
 }
 
-onMounted(() => document.addEventListener('click', handleDocClick))
-onBeforeUnmount(() => document.removeEventListener('click', handleDocClick))
+onMounted(() => {
+  document.addEventListener('click', handleDocClick)
+  // Start text rotation
+  rotationInterval = setInterval(rotateText, 2000)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleDocClick)
+  // Clear rotation interval
+  if (rotationInterval) {
+    clearInterval(rotationInterval)
+  }
+})
 </script>
 
 <style scoped>
