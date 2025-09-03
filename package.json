@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "postbuild": "mkdir -p .vercel/output/functions/__nitro.func && cp -r server/assets .vercel/output/functions/__nitro.func/",
+    "postbuild": "mkdir -p .vercel/output/functions/__nitro.func && cp server/assets/* .vercel/output/functions/__nitro.func/",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
