@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "postbuild": "mkdir -p .vercel/output/functions/__nitro.func/db && cp server/public/db.sqlite3 .vercel/output/functions/__nitro.func/db/",
+    "postbuild": "mkdir -p .vercel/output/functions/__nitro.func/db && cp server/public/* .vercel/output/functions/__nitro.func/db/",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
