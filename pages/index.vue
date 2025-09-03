@@ -3,10 +3,10 @@
     <Search />
     <div class="max-w-5xl w-full">
       <Explore />
-      <div class="divider font-serif"></div>
-      <MassReadings />
-      <div class="divider font-serif"></div>
-      <Books class="p-4" />
+      <!-- <div class="divider font-serif"></div>
+      <MassReadings /> -->
+      <div class="divider font-serif">Books</div>
+      <Books class="p-4" id="books-list"/>
     </div>
   </div>
 </template>

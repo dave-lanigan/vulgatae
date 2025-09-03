@@ -5,7 +5,7 @@
       <div class="mb-12 text-center">
         <h2 class="text-2xl font-bold text-white mb-4">Read, Listen, Study, and Reflect on the Vulgate</h2>
         <p class="text-lg leading-relaxed max-w-4xl mx-auto">
-          Vulgatae.com is a trusted platform dedicated to making St. Jerome's Latin Vulgate accessible to Catholics and scholars worldwide. 
+          Vulgatae.com is a trusted platform dedicated to making the Duay-Rheims Latin Vulgate Bible accessible to all.
           We provide the complete text, English translations, audio recitations, word-by-word analysis, and tools for deeper study of Sacred Scripture 
           in its most venerable Latin form.
         </p>
@@ -21,11 +21,9 @@
           <h3 class="text-white font-semibold mb-4 text-lg">Navigate</h3>
           <ul class="space-y-2">
             <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
-            <li><a href="/audio" class="hover:text-white transition-colors">Latin Audio</a></li>
-            <li><a href="/books" class="hover:text-white transition-colors">Books</a></li>
+            <li><a href="/#books-list" class="hover:text-white transition-colors">Books</a></li>
             <li><a href="/search" class="hover:text-white transition-colors">Search</a></li>
             <li><a href="/about" class="hover:text-white transition-colors">About Us</a></li>
-            <li><a href="/study-tools" class="hover:text-white transition-colors">Study Tools</a></li>
             <li><a href="/feedback" class="hover:text-white transition-colors">Feedback</a></li>
             <li><a href="/help" class="hover:text-white transition-colors">Help</a></li>
           </ul>
@@ -36,12 +34,12 @@
           <h3 class="text-white font-semibold mb-4 text-lg">Our Projects</h3>
           <ul class="space-y-2">
             <li><a href="https://vulgatae.com" class="hover:text-white transition-colors">Vulgatae.com</a></li>
-            <li><a href="/mobile" class="hover:text-white transition-colors">Vulgate Mobile App</a></li>
+            <!-- <li><a href="/mobile" class="hover:text-white transition-colors">Vulgate Mobile App</a></li>
             <li><a href="/breviary" class="hover:text-white transition-colors">Latin Breviary</a></li>
             <li><a href="/missal" class="hover:text-white transition-colors">Roman Missal</a></li>
             <li><a href="/saints" class="hover:text-white transition-colors">Lives of Saints</a></li>
             <li><a href="/patristics" class="hover:text-white transition-colors">Church Fathers</a></li>
-            <li><span class="text-gray-500 text-sm">Catholic educational resources</span></li>
+            <li><span class="text-gray-500 text-sm">Catholic educational resources</span></li> -->
           </ul>
         </div>
 
@@ -49,13 +47,12 @@
         <div>
           <h3 class="text-white font-semibold mb-4 text-lg">Popular Passages</h3>
           <ul class="space-y-2">
-            <li><a href="/genesis/1" class="hover:text-white transition-colors">Genesis 1 (Creation)</a></li>
-            <li><a href="/psalms/23" class="hover:text-white transition-colors">Psalm 23</a></li>
-            <li><a href="/john/3" class="hover:text-white transition-colors">John 3:16</a></li>
-            <li><a href="/matthew/5" class="hover:text-white transition-colors">Beatitudes</a></li>
-            <li><a href="/1-corinthians/13" class="hover:text-white transition-colors">1 Corinthians 13</a></li>
-            <li><a href="/romans/8" class="hover:text-white transition-colors">Romans 8</a></li>
-            <li><a href="/revelation/21" class="hover:text-white transition-colors">New Jerusalem</a></li>
+            <li><a href="/books/1/chapters/1#verse-1" class="hover:text-white transition-colors">Genesis 1 (Creation)</a></li>
+            <li><a href="/books/21/chapters/25" class="hover:text-white transition-colors">Psalm 23</a></li>
+            <li><a href="/books/50/chapters/3" class="hover:text-white transition-colors">John 3:16</a></li>
+            <li><a href="/books/47/chapters/5" class="hover:text-white transition-colors">Beatitudes</a></li>
+            <li><a href="/books/53/chapters/1#verse-13" class="hover:text-white transition-colors">1 Corinthians 13</a></li>
+            <li><a href="/books/52/chapters/8" class="hover:text-white transition-colors">Romans 8</a></li>
           </ul>
         </div>
 
@@ -63,13 +60,10 @@
         <div>
           <h3 class="text-white font-semibold mb-4 text-lg">Devotions & Prayers</h3>
           <ul class="space-y-2">
-            <li><a href="/ave-maria" class="hover:text-white transition-colors">Ave Maria</a></li>
-            <li><a href="/pater-noster" class="hover:text-white transition-colors">Pater Noster</a></li>
-            <li><a href="/gloria-patri" class="hover:text-white transition-colors">Gloria Patri</a></li>
-            <li><a href="/te-deum" class="hover:text-white transition-colors">Te Deum</a></li>
-            <li><a href="/veni-creator" class="hover:text-white transition-colors">Veni Creator</a></li>
-            <li><a href="/magnificat" class="hover:text-white transition-colors">Magnificat</a></li>
-            <li><a href="/angelus" class="hover:text-white transition-colors">Angelus</a></li>
+            <li><a href="https://www.ewtn.com/catholicism/library/latin-prayers-9125" class="hover:text-white transition-colors">Ave Maria</a></li>
+            <li><a href="https://www.ewtn.com/catholicism/library/latin-prayers-9125" class="hover:text-white transition-colors">Pater Noster</a></li>
+            <li><a href="https://www.ewtn.com/catholicism/library/latin-prayers-9125" class="hover:text-white transition-colors">Gloria Patri</a></li>
+            <li><a href="https://www.ewtn.com/catholicism/library/latin-prayers-9125" class="hover:text-white transition-colors">Angelus</a></li>
           </ul>
         </div>
       </div>

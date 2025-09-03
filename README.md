@@ -1,71 +1,51 @@
 # vulgatae.com
 
-This is a Latin focused Bible application.
-
-The primary goal of this project is to assist in 
-The secondary goal of this project is to e
+This is a Latin focused Bible application. The primary goal of this app is to bring Latin more to the fore in one's relationshipw with scripture, while at the same time providing bible app with more modern features.
 
 ## About
 
 There are three sacred languages in Christianity: Latin, Greek and Hebrew. Cultural the primary languages of the West are Latin and Greek. For the Roman Catholic Church our language is Latin. This differentiates it from the Eastern Catholic traditions.
 
-Protestants are also part of the Western tradition and we encourage you to re-discovery your language and heritage through the use of the `vulgatae.com` project.
-
-## Why `vulgatae.com`
-
-Latin first approach.
-
-An appeciation of the words and sounds of the bible in Latin rather than just study.
-
-
 ## Tech
 
+- Nuxt.JS
+- Tailwind CSS
+- SQLite3
+- Algolia for search
+- ChatGPT for AI features
 
 ## Roadmap
-- [x] ETL Bible
-- [] Add Books
-- [x] Fix Navigation
-- [] Fix CSS
-  - [x] bring explore cards toward center try out shadows 
-  - [x] fix copying bible verses
-  - [x] add verse numbers to break up text
-  - [] add category verses to the db
-  - [] add redirect to category vereses.
-- [x] Add Search
-- [x] Add indexing
-- [] Finish up help pages, links to other sites, feedback, etc
-- [] deploy v1
+### Features
+- [] Daily bible verse container
+- [] Pray the psalms section
+  - [] [psalms-english](https://www.youtube.com/watch?v=L4_ehC_VEPc&list=PLTznj9fyCSlDWxCmrBpOfEkXwIeWIe3I0&index=2&ab_channel=ChantsandRants)
+- [] Daily Mass Readings (Traditional)
+  - [] ETL DMR
+- [] Commentaries
+  - [] St. Aquinas
+  - [] St. Augustine
+  - [] St. Jerome
+  - [] Origen
+- [] Add a prayers sections
+- [] Add text to speech for the entire bible
+- [] Add chatGPT Search
+- [] Each word translated
+- [] AI Bible Verse Search + trending searches
 
-- [] ETL Commentaries
-- [] Add Commentaries
-- [] fancify site
+### Fixes
+- [] Cannot type in a book/chapter/verse to go to it
+- [] Fix CSS for finding verses
+- [] Fix chapters so the words arent hidden
+- [] light and dark theme for site - add toggle for this.
+- [] Other
   - [] add tooltips
-  - [] undearneath the title; rotate the words "vulgatae", "/wʊlˈɡaː.te/", "vool-GAH-teh"
   - [] use local storage + add my vulgatae that tracks verses you read
   - [] navigation to the next chapter at the bottom of the 
-  - [] do not hid words in books/chapters
-  - [] fix chapters so that it highlights
-  - [] light and dark theme for site - add toggle for this.
   - [] fix theme overall. come up with something nice and fancy.
 
-- [] Add text to speech for the entire bible
-- [] Add Commentaries
-
-
-## Coming
-- Commentaries
-  - St. Aquinas
-  - St. Augustine
-  - St. Jerome
-  - Origen
-- Each word translated
-- Playback
-    - Playback for each verse
-- AI Bible Verse Search + trending searches
 
 ## Resources
 
 - [Duay-Rheims](https://www.drbo.org/)
 - [Septuagent](https://septuaginta.net/)
 - [vulgate.org](https://vulgate.org/)
-- [psalms-english](https://www.youtube.com/watch?v=L4_ehC_VEPc&list=PLTznj9fyCSlDWxCmrBpOfEkXwIeWIe3I0&index=2&ab_channel=ChantsandRants)
