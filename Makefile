@@ -1,0 +1,2 @@
+algo:
+	sqlite3 server/public/db.sqlite3 ".headers on" ".mode csv" ".output verses_with_books.csv" "SELECT v.book, b.title, b.title_latin, b.alt_title, v.chapter, v.verse, v.english, v.latin FROM verses v JOIN books b ON v.book = b.number ORDER BY v.book, v.chapter, v.verse;" ".quit"

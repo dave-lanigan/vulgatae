@@ -14,10 +14,10 @@
                 <NuxtLink :to="`/${card.path}`">
                   <div class="card-body flex flex-col items-start justify-start p-2">
                     <div class="flex flex-row items-center w-full mb-2">
-                      <h2 class="card-title text-left text-xs sm:text-base md:text-lg flex-1 text-blue-950">{{ card.title }}</h2>
+                      <h2 class="card-title text-left flex-1 text-blue-950">{{ card.title }}</h2>
                       <Icon :name="card.icon" size="24" class="text-teal-600 ml-2 transition-color group-hover:text-blue-950 flex-shrink-0" />
                     </div>
-                    <p class="text-left text-[10px] sm:text-xs md:text-sm w-full">{{ card.description }}</p>
+                    <p class="text-left w-full">{{ card.description }}</p>
                 </div>
               </NuxtLink>
               </div>

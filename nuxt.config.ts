@@ -27,16 +27,13 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     devOptions: {
       enabled: true,
+      suppressWarnings: true
     },
     workbox: {
-      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
-      globIgnores: [
-        '**/node_modules/**/*',
-        'sw.js',
-        'workbox-*.js',
-        '**/_payload.json',
-        '_nuxt/builds/**/*.json'
-      ]
+      globPatterns: ['**/*.{js,css,html}'],
+      navigateFallback: null,
+      skipWaiting: true,
+      clientsClaim: true
     },
     manifest: {
       name: 'Vulgatae.com',
