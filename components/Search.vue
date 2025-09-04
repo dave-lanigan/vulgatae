@@ -68,7 +68,7 @@
                 @click="clearResults"
               >
                 <div class="text-sm font-medium text-blue-900 mb-1">
-                  {{ hit.book }} {{ hit.chapter }}:{{ hit.verse }}
+                  <span v-html="hit._highlightResult?.title?.value || hit.title"></span> {{ hit.chapter }}:{{ hit.verse }}
                 </div>
                 <div class="text-sm text-gray-700 mb-1" v-html="hit._highlightResult?.latin?.value || hit.latin"></div>
                 <div class="text-xs text-gray-500" v-html="hit._highlightResult?.english?.value || hit.english"></div>
@@ -112,8 +112,8 @@ async function performSearch() {
   try {
     const { hits } = await $searchIndex.search(searchQuery.value, {
       hitsPerPage: 20,
-      attributesToRetrieve: ['book', 'chapter', 'verse', 'latin', 'english'],
-      attributesToHighlight: ['latin', 'english'],
+      attributesToRetrieve: ['book', 'title', 'alt_title', 'latin_title', 'chapter', 'verse', 'latin', 'english'],
+      attributesToHighlight: ['title', 'alt_title', 'latin_title', 'latin', 'english'],
       highlightPreTag: '<mark class="bg-amber-200">',
       highlightPostTag: '</mark>'
     })
