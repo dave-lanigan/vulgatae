@@ -27,16 +27,19 @@ export default defineNuxtPlugin(async () => {
     // Create a wrapper that uses the v5 API
     const searchIndex = {
       async search(query, options = {}) {
+        const request = {
+          indexName: algoliaIndexName,
+          query,
+          hitsPerPage: options.hitsPerPage || 20,
+          attributesToRetrieve: options.attributesToRetrieve,
+          attributesToHighlight: options.attributesToHighlight,
+          highlightPreTag: options.highlightPreTag,
+          highlightPostTag: options.highlightPostTag
+        }
+        if (options.filters) request.filters = options.filters
+        if (options.numericFilters) request.numericFilters = options.numericFilters
         const response = await client.search({
-          requests: [{
-            indexName: algoliaIndexName,
-            query,
-            hitsPerPage: options.hitsPerPage || 20,
-            attributesToRetrieve: options.attributesToRetrieve,
-            attributesToHighlight: options.attributesToHighlight,
-            highlightPreTag: options.highlightPreTag,
-            highlightPostTag: options.highlightPostTag
-          }]
+          requests: [request]
         })
         return response.results[0]
       }

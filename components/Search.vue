@@ -106,17 +106,58 @@ function rotateText() {
 
 const quickSearches = ['amor', 'pax', 'veritas', 'vita', 'lux', 'caritas']
 
+/**
+ * Parse a search query for verse reference patterns.
+ * Supports: "Genesis 3:16", "Gen 3", "3:16", "1 John 2:3", "John 1:1-5"
+ * Returns { query, filters } for Algolia.
+ */
+function parseVerseReference(input) {
+  const trimmed = input.trim()
+
+  // Pattern: optional book name (may start with a number like "1 John"), then chapter, optional :verse
+  // e.g. "Genesis 3:16", "1 John 2:3", "Gen 3", "Exodus 12:1"
+  const bookChapterVerse = /^(.+?)\s+(\d+)(?::(\d+))?(?:\s*-\s*\d+)?$/
+  // Pattern: just chapter:verse, e.g. "3:16"
+  const chapterVerse = /^(\d+):(\d+)(?:\s*-\s*\d+)?$/
+
+  let match
+
+  // Try chapter:verse only (no book name)
+  match = trimmed.match(chapterVerse)
+  if (match) {
+    const filters = [`chapter = ${match[1]}`, `verse = ${match[2]}`]
+    return { query: '', filters: filters.join(' AND ') }
+  }
+
+  // Try book + chapter + optional verse
+  match = trimmed.match(bookChapterVerse)
+  if (match) {
+    const bookName = match[1].trim()
+    const chapter = match[2]
+    const verse = match[3]
+    const filterParts = [`chapter = ${chapter}`]
+    if (verse) filterParts.push(`verse = ${verse}`)
+    return { query: bookName, filters: filterParts.join(' AND ') }
+  }
+
+  // No verse reference pattern found — plain text search
+  return { query: trimmed, filters: null }
+}
+
 async function performSearch() {
   if (!$searchIndex || !searchQuery.value.trim() || isSearching.value) return
   isSearching.value = true
   try {
-    const { hits } = await $searchIndex.search(searchQuery.value, {
+    const { query, filters } = parseVerseReference(searchQuery.value)
+    const searchOptions = {
       hitsPerPage: 20,
       attributesToRetrieve: ['book', 'title', 'alt_title', 'latin_title', 'chapter', 'verse', 'latin', 'english'],
       attributesToHighlight: ['title', 'alt_title', 'latin_title', 'latin', 'english'],
       highlightPreTag: '<mark class="bg-amber-200">',
       highlightPostTag: '</mark>'
-    })
+    }
+    if (filters) searchOptions.filters = filters
+    const { hits } = await $searchIndex.search(query, searchOptions)
     searchResults.value = hits || []
   } catch (e) {
     console.error('Search error:', e)

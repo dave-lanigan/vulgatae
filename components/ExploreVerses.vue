@@ -44,20 +44,8 @@ const versesHeader = computed(() => {
 }
 )
 
-const { data: versesInfo, pending, error } = await useFetch(`/api/explore/${explore}`)
-const verses = ref([])
-if (versesInfo.value) {
-    for (const verseInfo of versesInfo.value) {
-        const url = `/api/books/${verseInfo.bookNumber}/chapters/${verseInfo.chapter}/verses/${verseInfo.verse}`;
-        if (!verseInfo.verse.includes('-')) {
-            const verse = await $fetch(url)
-            if (verse) {
-                console.log(verse);
-                verses.value.push(verse)
-            }
-        }
-    }
-}
+const { data: verses, pending, error } = await useFetch(`/api/explore/${explore}/verses`)
+
 const englishJoined = computed(() =>
   (verses.value || []).map(v => `${v.english}<sup class="verse-number">[${v.verse}]</sup>`).join(' ')
 );
