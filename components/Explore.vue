@@ -4,27 +4,27 @@
           <h2 class="text-2xl font-bold font-serif text-primary">Explore Vulgatae</h2>
         </div>
 
-          <div class="m-6 overflow-x-auto whitespace-nowrap">
+          <div class="m-6 overflow-x-auto">
             <div class="inline-flex gap-6">
               <div
                 v-for="card in cards"
                 :key="card.title"
-                class="card w-72 sm:w-80 md:w-80 lg:w-80 h-44 bg-transparent shadow-md border border-base-300 transition-colors group overflow-hidden inline-block cursor-pointer"
+                class="card w-72 sm:w-80 md:w-80 lg:w-80 min-h-44 bg-transparent shadow-md border border-base-300 transition-colors group overflow-hidden inline-block cursor-pointer whitespace-normal"
               >
-                <NuxtLink :to="`/${card.path}`" class="h-full">
+                <NuxtLink :to="`/${card.path}`" class="h-full block">
                   <div class="card-body flex flex-col items-start justify-between p-4 h-full">
                     <div class="w-full">
                       <div class="w-full mb-2">
                         <h2 class="card-title text-left text-primary text-lg font-bold leading-tight mb-1">{{ card.title }}</h2>
                         <span class="text-xs uppercase tracking-wider text-secondary">{{ card.category }}</span>
                       </div>
-                      <p class="text-left w-full text-sm text-base-content/75 mb-2 line-clamp-1">{{ card.description }}</p>
+                      <p class="text-left w-full text-sm text-base-content/75 mb-2 leading-relaxed break-words">{{ card.description }}</p>
                     </div>
 
                     <div class="w-full mt-auto">
                       <div class="pl-3 mb-2">
-                        <p class="text-xs italic text-base-content/60 font-serif leading-relaxed line-clamp-1">{{ card.latinQuote }}</p>
-                        <p class="text-xs text-base-content/45 truncate">— {{ card.quoteSource }}</p>
+                        <p class="text-xs italic text-base-content/60 font-serif leading-relaxed break-words">{{ card.latinQuote }}</p>
+                        <p class="text-xs text-base-content/45 break-words">— {{ card.quoteSource }}</p>
                       </div>
 
                       <div class="flex items-center justify-between w-full">
