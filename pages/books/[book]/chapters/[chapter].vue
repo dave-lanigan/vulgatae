@@ -127,9 +127,25 @@ const currentBook = computed(() => books.find(book => book.number === bookId))
 
 // Track reading progress
 const { markChapterRead } = useReadingProgress()
+const { setLastReadVerse } = useLastReadVerse()
 const chapterId = parseInt(route.params.chapter)
-onMounted(() => {
+onMounted(async () => {
   markChapterRead(bookId, chapterId)
+
+  const hashVerse = route.hash?.startsWith('#verse-')
+    ? parseInt(route.hash.replace('#verse-', ''))
+    : null
+  const verseNumber = Number.isInteger(hashVerse) && hashVerse > 0 ? hashVerse : 1
+
+  try {
+    const verseData = await $fetch(`/api/books/${bookId}/chapters/${chapterId}/verses/${verseNumber}`)
+    setLastReadVerse(bookId, chapterId, verseNumber, {
+      latin: verseData?.latin?.substring(0, 200),
+      english: verseData?.english?.substring(0, 200)
+    })
+  } catch {
+    setLastReadVerse(bookId, chapterId, verseNumber)
+  }
 })
 
 // Set page title

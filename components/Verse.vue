@@ -7,7 +7,7 @@ Options for verse:
 -->
 
 <template>
-  <div :id="`verse-${verse.verse}`" class="flex flex-col sm:flex-row items-stretch min-h-full w-full m-2 verse-container">
+  <div :id="`verse-${verse.verse}`" class="flex flex-col sm:flex-row items-stretch min-h-full w-full m-2 verse-container" @click="trackVerseRead">
     
     <!-- Icons Container -->
     <div class="options-sidebar flex flex-row sm:flex-col gap-2 sm:gap-1 sm:mb-0">
@@ -86,6 +86,7 @@ const props = defineProps({
 })
 
 const route = useRoute()
+const { setLastReadVerse } = useLastReadVerse()
 
 // Bookmarks
 const { toggleBookmark, isBookmarked, load: loadBookmarks } = useBookmarks()
@@ -102,6 +103,13 @@ const bookNumber = computed(() => props.verse.book || parseInt(route.params.book
 
 function updateBookmarked() {
   bookmarked.value = isBookmarked(bookNumber.value, props.verse.chapter, props.verse.verse)
+}
+
+async function trackVerseRead() {
+  await setLastReadVerse(bookNumber.value, props.verse.chapter, props.verse.verse, {
+    latin: props.verse.latin?.substring(0, 200),
+    english: props.verse.english?.substring(0, 200)
+  })
 }
 
 async function handleBookmarkToggle() {

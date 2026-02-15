@@ -19,6 +19,7 @@ function getStorage() {
 const KEYS = {
   bookmarks: 'bookmarks',
   readProgress: 'readProgress',
+  lastReadVerse: 'lastReadVerse',
   searchHistory: 'searchHistory',
   notes: 'notes',
   theme: 'preferences:theme'
@@ -131,6 +132,55 @@ export function useReadingProgress() {
   }
 
   return { readChapters, markChapterRead, isChapterRead, load }
+}
+
+// ── Last Read Verse ─────────────────────────────────────────
+
+const _lastReadVerse = ref(null)
+let _lastReadVerseLoadPromise = null
+
+function _loadLastReadVerse() {
+  if (!import.meta.client) return Promise.resolve()
+  if (!_lastReadVerseLoadPromise) {
+    _lastReadVerseLoadPromise = getStorage()
+      .getItem(KEYS.lastReadVerse)
+      .then(stored => { _lastReadVerse.value = stored || null })
+  }
+  return _lastReadVerseLoadPromise
+}
+
+export function useLastReadVerse() {
+  const lastReadVerse = _lastReadVerse
+
+  async function load() {
+    return _loadLastReadVerse()
+  }
+
+  async function setLastReadVerse(book, chapter, verse, meta = {}) {
+    if (!import.meta.client) return
+    await _loadLastReadVerse()
+    lastReadVerse.value = {
+      id: verseId(book, chapter, verse),
+      book,
+      chapter,
+      verse,
+      ...meta,
+      updatedAt: Date.now()
+    }
+    await getStorage().setItem(KEYS.lastReadVerse, lastReadVerse.value)
+  }
+
+  async function clearLastReadVerse() {
+    if (!import.meta.client) return
+    lastReadVerse.value = null
+    await getStorage().setItem(KEYS.lastReadVerse, null)
+  }
+
+  if (import.meta.client) {
+    _loadLastReadVerse()
+  }
+
+  return { lastReadVerse, setLastReadVerse, clearLastReadVerse, load }
 }
 
 // ── Search History ────────────────────────────────────────────
