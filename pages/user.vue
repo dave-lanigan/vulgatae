@@ -2,7 +2,7 @@
   <div class="min-h-screen">
 
     <!-- Top bar matching other pages -->
-    <div class="pt-4 pb-4 bg-base-100 shadow-md">
+    <div class="pt-4 pb-4 bg-white shadow-md">
       <div class="mx-auto flex items-center justify-between w-full max-w-screen-lg px-4">
         <NuxtLink to="/" class="btn btn-ghost text-xs sm:text-sm">
           <Icon name="material-symbols:arrow-back" size="20" />

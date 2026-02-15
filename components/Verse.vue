@@ -12,7 +12,7 @@ Options for verse:
     <!-- Icons Container -->
     <div class="options-sidebar flex flex-row sm:flex-col gap-2 sm:gap-1 sm:mb-0">
       <div class="sidebar-option" title="Verse Reference">
-        <span class="text-black text-lg">{{ verse.chapter }}:{{ verse.verse }}</span>
+        <span class="text-accent text-lg">{{ verse.chapter }}:{{ verse.verse }}</span>
       </div>
       <div class="sidebar-option cursor-pointer hover:text-blue-600" title="Copy Verse Text" @click="copyVerseText">
         <Icon name="lucide:copy" size="16" class="text-gray-400 hover:text-blue-600" />
@@ -51,7 +51,10 @@ Options for verse:
 
     <!-- Note Modal -->
     <dialog ref="noteDialog" class="modal">
-      <div class="modal-box">
+      <div class="modal-box relative">
+        <button class="btn btn-ghost btn-sm btn-circle absolute right-2 top-2" @click="closeNoteModal" aria-label="Close note dialog">
+          <Icon name="lucide:x" size="16" />
+        </button>
         <h3 class="font-bold text-lg mb-2">Note — {{ verse.chapter }}:{{ verse.verse }}</h3>
         <textarea 
           v-model="noteText" 
@@ -63,7 +66,6 @@ Options for verse:
             <Icon name="lucide:trash-2" size="14" />
             Delete
           </button>
-          <button class="btn btn-ghost" @click="closeNoteModal">Cancel</button>
           <button class="btn btn-primary btn-outline" @click="handleSaveNote" :disabled="!noteText.trim()">Save</button>
         </div>
       </div>

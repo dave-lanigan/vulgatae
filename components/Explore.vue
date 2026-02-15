@@ -1,7 +1,7 @@
 <template>
     <div class="mx-auto max-w-full">
         <div class="m-4">
-            <h2 class="text-2xl font-bold font-serif text-blue-950">Explore Vulgatae</h2>
+          <h2 class="text-2xl font-bold font-serif text-primary">Explore Vulgatae</h2>
         </div>
 
           <div class="m-6 overflow-x-auto whitespace-nowrap">
@@ -9,17 +9,31 @@
               <div
                 v-for="card in cards"
                 :key="card.title"
-                  class="card w-72 sm:w-80 md:w-80 lg:w-80 bg-transparent card-xs shadow-sm border border-gray-200 hover:border-blue-950 transition-colors group overflow-hidden inline-block cursor-pointer"
+                class="card w-72 sm:w-80 md:w-80 lg:w-80 h-44 bg-transparent shadow-md border border-base-300 transition-colors group overflow-hidden inline-block cursor-pointer"
               >
-                <NuxtLink :to="`/${card.path}`">
-                  <div class="card-body flex flex-col items-start justify-start p-2">
-                    <div class="flex flex-row items-center w-full mb-2">
-                      <h2 class="card-title text-left flex-1 text-blue-950">{{ card.title }}</h2>
-                      <Icon :name="card.icon" size="24" class="text-teal-600 ml-2 transition-color group-hover:text-blue-950 flex-shrink-0" />
+                <NuxtLink :to="`/${card.path}`" class="h-full">
+                  <div class="card-body flex flex-col items-start justify-between p-4 h-full">
+                    <div class="w-full">
+                      <div class="w-full mb-2">
+                        <h2 class="card-title text-left text-primary text-lg font-bold leading-tight mb-1">{{ card.title }}</h2>
+                        <span class="text-xs uppercase tracking-wider text-secondary">{{ card.category }}</span>
+                      </div>
+                      <p class="text-left w-full text-sm text-base-content/75 mb-2 line-clamp-1">{{ card.description }}</p>
                     </div>
-                    <p class="text-left w-full">{{ card.description }}</p>
-                </div>
-              </NuxtLink>
+
+                    <div class="w-full mt-auto">
+                      <div class="pl-3 mb-2">
+                        <p class="text-xs italic text-base-content/60 font-serif leading-relaxed line-clamp-1">{{ card.latinQuote }}</p>
+                        <p class="text-xs text-base-content/45 truncate">— {{ card.quoteSource }}</p>
+                      </div>
+
+                      <div class="flex items-center justify-between w-full">
+                        <span class="text-xs text-accent font-medium">{{ card.verseCount }}</span>
+                        <span class="text-xs text-base-content/70 transition-colors group-hover:text-primary">Open verses</span>
+                      </div>
+                    </div>
+                  </div>
+                </NuxtLink>
               </div>
             </div>
           </div>
@@ -27,31 +41,36 @@
 </template>
 
 <script setup>
-const cards = [
-  // {
-  //   title: 'Inspirational Verses',
-  //   icon: 'mdi:lightbulb-on-outline',
-  //   description: 'Uplifting and motivating passages.',
-  //   path: 'explore/inspirational'
-  // },
-  {
-    title: 'Comforting Verses',
-    icon: 'material-symbols:favorite',
-    description: 'Words of peace and reassurance.',
-    path: 'explore/comforting'
-  },
-  {
-    title: 'Pray the Psalms',
-    icon: 'mdi:hands-pray',
-    description: 'Classic prayers from the Psalms.',
-    path: 'books/21/chapters'
+const { getChapter } = useDailyPsalm()
+const dailyPsalmChapter = getChapter()
 
+const cards = [
+  {
+    title: 'Words of Comfort',
+    description: 'Words of peace and reassurance from Scripture to bring comfort in times of trial.',
+    path: 'explore/comforting',
+    category: 'Devotional',
+    latinQuote: 'Dominus illuminatio mea.',
+    quoteSource: 'Psalmus 27:1',
+    verseCount: '85+ verses',
   },
   {
-    title: 'Instructional Verses',
-    icon: 'mdi:book-open-blank-variant-outline',
-    description: 'Guidance and wisdom for life.',
-    path: 'explore/instructional'
+    title: 'Daily Psalms',
+    path: `books/21/chapters/${dailyPsalmChapter}`,
+    description: 'Pray through the timeless poetry of the Psalms — one chapter each day.',
+    category: 'Prayer',
+    latinQuote: 'Cantate Domino canticum novum.',
+    quoteSource: 'Psalmus 96:1',
+    verseCount: '150 psalms',
+  },
+  {
+    title: 'Words of Wisdom',
+    description: 'Guidance and wisdom for daily life drawn from Proverbs, Sirach, and beyond.',
+    path: 'explore/instructional',
+    category: 'Wisdom',
+    latinQuote: 'Initium sapientiae timor Domini.',
+    quoteSource: 'Proverbia 9:10',
+    verseCount: '90+ verses',
   }
 ]
 </script>
@@ -61,5 +80,19 @@ const cards = [
 
 .font-serif {
   font-family: 'EB Garamond', serif;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 </style>

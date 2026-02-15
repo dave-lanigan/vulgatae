@@ -2,7 +2,7 @@
   <div class="">
 
     <!-- Navigation -->
-    <div class="pt-4 pb-4 justify-between bg-base-100 shadow-md overflow-x-hidden">
+    <div class="pt-4 pb-4 justify-between bg-white shadow-md overflow-x-hidden">
     
       <div class="mx-auto flex items-center relative sm:static justify-between w-full max-w-screen-lg px-4">
         <!-- Back Arrow: always left -->

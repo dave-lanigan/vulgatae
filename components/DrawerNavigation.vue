@@ -7,7 +7,7 @@
     </div>
     <div class="drawer-side">
       <label for="bible-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-            <div class="menu bg-base-200 text-base-content min-h-full w-80 p-4 flex flex-col">
+            <div class="menu bg-white text-base-content min-h-full w-80 p-4 flex flex-col">
         <!-- Bible Navigation -->
         <div class="mb-4 flex-shrink-0">
           <h2 class="text-lg font-bold mb-2">Vulgate Bible</h2>
@@ -28,12 +28,12 @@
         
         <!-- Books list -->
         <div v-else-if="books" class="space-y-1 flex-1 overflow-y-auto">
-          <div v-for="book in filteredBooks" :key="book.number" class="border border-base-300 rounded-lg mb-2">
+          <div v-for="book in filteredBooks" :key="book.number" class="mb-2">
             
             <!-- Book Header - Collapsed -->
             <div 
               @click="toggleBook(book.number)" 
-              class="cursor-pointer hover:bg-base-300 p-3 flex items-center justify-between"
+              class="cursor-pointer hover:bg-neutral/10 p-3 flex items-center justify-between"
             >
               <div class="flex items-center">
                 <Icon :name="expandedBooks[book.number] ? 'lucide:book' : 'lucide:book'" size="16" class="mr-2" />
@@ -43,16 +43,16 @@
             </div>
 
             <!-- Book Header - Expanded -->
-            <div v-if="expandedBooks[book.number]" class="p-2 border-t border-base-300">
+            <div v-if="expandedBooks[book.number]" class="p-2">
               <div v-if="loadingChapters[book.number]" class="flex justify-center py-2">
                 <span class="loading loading-spinner loading-sm"></span>
               </div>
               <div v-else-if="chapters[book.number]" class="space-y-1">
-                <div v-for="chapter in chapters[book.number]" :key="chapter.number" 
-                     class="border border-base-200 rounded mb-1">
+                 <div v-for="chapter in chapters[book.number]" :key="chapter.number" 
+                   class="mb-1">
                   <div 
                     @click="toggleChapter(book.number, chapter.number)"
-                    class="cursor-pointer hover:bg-base-200 p-2 flex items-center justify-between"
+                    class="cursor-pointer hover:bg-neutral/10 p-2 flex items-center justify-between"
                   >
                     <div class="flex items-center">
                       <Icon name="lucide:book-open" size="14" class="mr-2" />
@@ -61,7 +61,7 @@
                     <Icon :name="expandedChapters[`${book.number}-${chapter.number}`] ? 'lucide:chevron-up' : 'lucide:chevron-down'" size="14" class="mr-1" />
                   </div>
                   
-                  <div v-if="expandedChapters[`${book.number}-${chapter.number}`]" class="p-2 border-t border-base-200">
+                  <div v-if="expandedChapters[`${book.number}-${chapter.number}`]" class="p-2">
                     <div v-if="loadingVerses[`${book.number}-${chapter.number}`]" class="flex justify-center py-1">
                       <span class="loading loading-spinner loading-xs"></span>
                     </div>
@@ -69,7 +69,7 @@
                       <div v-for="verse in verses[`${book.number}-${chapter.number}`]" :key="verse.number">
                         <NuxtLink 
                           :to="`/books/${book.number}/chapters/${chapter.number}#verse-${verse.number}`"
-                          class="cursor-pointer hover:bg-base-100 p-2 flex items-center justify-between w-full"
+                          class="cursor-pointer hover:bg-neutral/10 p-2 flex items-center justify-between w-full"
                           @click="closeDrawer"
                         >
                         <div class="flex items-center">

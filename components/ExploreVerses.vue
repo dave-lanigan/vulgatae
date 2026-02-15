@@ -19,20 +19,34 @@
 
     <div v-if="activeTab === 'verses'" class="">
       <ul class="list-row">
-        <li v-for="verse in verses" :key="verse.verse" class="list-row border-b border-gray-200 last:border-b-0">
+        <li v-for="verse in verses" :key="`${verse.book}-${verse.chapter}-${verse.verse}`" class="list-row border-b border-gray-200 last:border-b-0">
           <Verse :verse="verse" />
         </li>
       </ul>
       <div v-if="pending">Loading...</div>
+      <div v-if="isInfiniteCategory && !pending && hasMore" ref="loadMoreTrigger" class="h-1 w-full"></div>
+      <div v-if="isInfiniteCategory && !hasMore && verses.length" class="text-sm opacity-70 py-4">No more verses</div>
       <div v-if="error">Error loading verses</div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, onBeforeUnmount, onMounted } from 'vue';
 const route = useRoute()
 const explore = route.params.explore
+const INFINITE_CATEGORIES = ['comforting', 'instructional']
+const isInfiniteCategory = INFINITE_CATEGORIES.includes(explore)
+const PAGE_SIZE = 25
+
+const seed = ref(Date.now())
+const page = ref(1)
+const verses = ref([])
+const hasMore = ref(true)
+const pending = ref(false)
+const error = ref(null)
+const loadMoreTrigger = ref(null)
+let observer = null
 
 const activeTab = ref('verses')
 const versesHeader = computed(() => {
@@ -44,7 +58,65 @@ const versesHeader = computed(() => {
 }
 )
 
-const { data: verses, pending, error } = await useFetch(`/api/explore/${explore}/verses`)
+const fetchPage = async () => {
+  if (pending.value || !hasMore.value) {
+    return
+  }
+
+  pending.value = true
+  error.value = null
+
+  try {
+    const response = await $fetch(`/api/explore/${explore}/verses`, {
+      query: {
+        page: page.value,
+        limit: PAGE_SIZE,
+        ...(isInfiniteCategory ? { seed: seed.value } : {})
+      }
+    })
+
+    const nextVerses = response?.verses || []
+    verses.value = page.value === 1 ? nextVerses : [...verses.value, ...nextVerses]
+    hasMore.value = Boolean(response?.hasMore)
+    page.value += 1
+  } catch (fetchError) {
+    error.value = fetchError
+    hasMore.value = false
+  } finally {
+    pending.value = false
+  }
+}
+
+await fetchPage()
+
+const setupObserver = () => {
+  if (!isInfiniteCategory || !loadMoreTrigger.value || observer) {
+    return
+  }
+
+  observer = new IntersectionObserver(
+    (entries) => {
+      const [entry] = entries
+      if (entry?.isIntersecting) {
+        fetchPage()
+      }
+    },
+    { rootMargin: '400px 0px' }
+  )
+
+  observer.observe(loadMoreTrigger.value)
+}
+
+onMounted(() => {
+  setupObserver()
+})
+
+onBeforeUnmount(() => {
+  if (observer) {
+    observer.disconnect()
+    observer = null
+  }
+})
 
 const englishJoined = computed(() =>
   (verses.value || []).map(v => `${v.english}<sup class="verse-number">[${v.verse}]</sup>`).join(' ')
@@ -62,7 +134,7 @@ const latinJoined = computed(() =>
 
 .verse-number {
   font-size: 0.7em;
-  color: #9ca3af; /* gray-400 */
+  color: var(--color-accent);
   font-weight: 500;
   margin-left: 0.15rem;
   vertical-align: super;

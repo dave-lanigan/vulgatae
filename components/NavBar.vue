@@ -1,5 +1,5 @@
 <template>
-    <div class="navbar bg-base-100 shadow-sm">
+    <div class="navbar bg-white shadow-sm">
         <div class="flex-none">
             <label for="bible-drawer" class="btn btn-square btn-ghost drawer-button">
                 <Icon name="material-symbols:menu" size="24" />
