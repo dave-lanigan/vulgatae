@@ -26,12 +26,13 @@ export default defineNuxtConfig({
   pwa: {
     registerType: 'autoUpdate',
     devOptions: {
-      enabled: true,
+      enabled: false,
       suppressWarnings: true
     },
     workbox: {
       globPatterns: ['**/*.{js,css,html}'],
       navigateFallback: null,
+      navigateFallbackDenylist: [/./],
       skipWaiting: true,
       clientsClaim: true
     },

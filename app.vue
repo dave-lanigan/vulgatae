@@ -10,6 +10,5 @@
 
 
 <script setup>
-const theme = useState('theme');
-theme.value = "vulgatae-light";
+const { theme } = useThemePreference()
 </script>

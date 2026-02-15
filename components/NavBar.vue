@@ -8,13 +8,12 @@
         <div class="flex-1">
             <NuxtLink to="/" class="btn btn-ghost text-xl font-primary">vulgatae.com</NuxtLink>
         </div>
-        <div class="flex-none pr-4" @click="$colorMode.preference = $colorMode.preference === 'vulgatae-light' ? 'vulgatae-dark' : 'vulgatae-light'">
-            <label class="swap swap-rotate">
-                <input type="checkbox" class="theme-controller" value="synthwave" />
-                <Icon name="material-symbols:light-mode" class="swap-off h-10 w-10" size="24" />
-                <Icon name="material-symbols:dark-mode" class="swap-on h-10 w-10" size="24"/>
-            </label>
+        <div class="flex-none">
+            <NuxtLink to="/user" class="btn btn-ghost btn-square">
+                <Icon name="lucide:user" size="22" />
+            </NuxtLink>
         </div>
+
     </div>
 </template>
 

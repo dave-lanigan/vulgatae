@@ -125,6 +125,13 @@ const books = [
 // Find the current book
 const currentBook = computed(() => books.find(book => book.number === bookId))
 
+// Track reading progress
+const { markChapterRead } = useReadingProgress()
+const chapterId = parseInt(route.params.chapter)
+onMounted(() => {
+  markChapterRead(bookId, chapterId)
+})
+
 // Set page title
 useHead({
   title: `${currentBook.value?.title} - Vulgatae.com`

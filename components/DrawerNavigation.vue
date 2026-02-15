@@ -97,10 +97,14 @@
         </div>
         
         <!-- Footer -->
-        <div class="mt-auto pt-4 border-t flex-shrink-0">
+        <div class="mt-auto pt-4 border-t flex-shrink-0 space-y-1">
           <NuxtLink to="/" class="btn btn-sm btn-ghost w-full" @click="closeDrawer">
             <Icon name="lucide:home" size="16" />
             Home
+          </NuxtLink>
+          <NuxtLink to="/user" class="btn btn-sm btn-ghost w-full" @click="closeDrawer">
+            <Icon name="lucide:user" size="16" />
+            Your Library
           </NuxtLink>
         </div>
       </div>

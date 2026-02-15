@@ -48,6 +48,7 @@
             v-model="searchQuery"
             @keyup.enter="performSearch"
             @input="handleInput"
+            @focus="handleFocus"
           />
         </div>
         
@@ -76,6 +77,22 @@
             </div>
           </div>
         </div>
+
+        <!-- Search History -->
+        <div v-else-if="showHistory && searchHistoryList.length > 0" class="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 max-h-64 overflow-y-auto z-50">
+          <div class="p-2">
+            <div class="text-xs text-gray-500 px-2 py-1 font-serif">Recent searches</div>
+            <div
+              v-for="(term, i) in searchHistoryList"
+              :key="i"
+              class="px-3 py-2 hover:bg-gray-50 cursor-pointer text-sm text-gray-700 font-serif flex items-center gap-2"
+              @mousedown.prevent="useHistoryItem(term)"
+            >
+              <Icon name="lucide:history" size="14" class="text-gray-400 flex-shrink-0" />
+              {{ term }}
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -87,6 +104,10 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 // Use Algolia index provided by the plugin
 const { $searchIndex } = useNuxtApp()
+
+// Search history
+const { history: searchHistoryList, addSearchQuery: saveSearch } = useSearchHistory()
+const showHistory = ref(false)
 
 const searchQuery = ref('')
 const searchResults = ref([])
@@ -105,6 +126,18 @@ function rotateText() {
 }
 
 const quickSearches = ['amor', 'pax', 'veritas', 'vita', 'lux', 'caritas']
+
+function handleFocus() {
+  if (!searchQuery.value.trim() && searchHistoryList.value.length > 0) {
+    showHistory.value = true
+  }
+}
+
+function useHistoryItem(term) {
+  searchQuery.value = term
+  showHistory.value = false
+  performSearch()
+}
 
 /**
  * Parse a search query for verse reference patterns.
@@ -159,6 +192,10 @@ async function performSearch() {
     if (filters) searchOptions.filters = filters
     const { hits } = await $searchIndex.search(query, searchOptions)
     searchResults.value = hits || []
+    // Save to search history
+    if (searchResults.value.length > 0) {
+      await saveSearch(searchQuery.value)
+    }
   } catch (e) {
     console.error('Search error:', e)
     searchResults.value = []
@@ -169,6 +206,7 @@ async function performSearch() {
 
 function handleInput() {
   clearTimeout(searchTimeout)
+  showHistory.value = false
   if (!searchQuery.value.trim()) {
     searchResults.value = []
     return
@@ -183,6 +221,7 @@ function quickSearch(term) {
 
 function clearResults() {
   searchResults.value = []
+  showHistory.value = false
 }
 
 function handleDocClick(e) {

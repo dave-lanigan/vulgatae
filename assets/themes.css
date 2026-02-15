@@ -1,85 +1,128 @@
+/*
+ * Vulgatae Theme
+ *
+ * A classical, scholarly palette for a Latin Vulgate Bible app.
+ *
+ * Brand colors derived from actual usage:
+ *   Gold  #b6862c  ≈ oklch(62% 0.135 72)  — brand accent, title dot, PWA theme
+ *   Navy  blue-950 ≈ oklch(28% 0.091 268)  — headings, card titles
+ *   Teal  teal-600 ≈ oklch(60% 0.118 185)  — icons, interactive highlights
+ */
+
+/* ───────────────────────────── Light ───────────────────────────── */
 @plugin "daisyui/theme" {
   name: "vulgatae-light";
-  default: false;
+  default: true;
   prefersdark: false;
-  color-scheme: "light";
-  --color-base-100: oklch(100% 0 0);
-  --color-base-200: oklch(98% 0.003 247.858);
-  --color-base-300: oklch(98% 0 0);
-  --color-base-content: oklch(30% 0.02 265);
-  --color-primary: oklch(28% 0.091 267.935);
-  --color-primary-content: oklch(98% 0.018 155.826);
-  --color-secondary: oklch(60% 0.12 70);
-  --color-secondary-content: oklch(96% 0.016 293.756);
-  --color-accent: oklch(60% 0.118 184.704);
-  /* --color-accent: oklch(77% 0.152 181.912); */
-  --color-accent-content: oklch(98% 0.031 120.757);
-  --color-neutral: oklch(44% 0.017 285.786);
+  color-scheme: light;
+
+  /* Surfaces — warm off-white with a faint parchment hue */
+  --color-base-100: oklch(99% 0.005 80);     /* page background */
+  --color-base-200: oklch(96.5% 0.008 80);   /* cards, raised surfaces */
+  --color-base-300: oklch(93% 0.01 80);      /* borders, dividers */
+  --color-base-content: oklch(25% 0.02 265);  /* body text — deep navy-black */
+
+  /* Primary — deep navy (headings, links, key UI) */
+  --color-primary: oklch(28% 0.091 268);
+  --color-primary-content: oklch(98% 0.005 80);
+
+  /* Secondary — brand gold (#b6862c) */
+  --color-secondary: oklch(62% 0.135 72);
+  --color-secondary-content: oklch(99% 0.01 80);
+
+  /* Accent — teal for icons & highlights */
+  --color-accent: oklch(52% 0.118 185);
+  --color-accent-content: oklch(98% 0.01 185);
+
+  /* Neutral — cool slate for muted UI */
+  --color-neutral: oklch(40% 0.02 265);
   --color-neutral-content: oklch(98% 0 0);
-  --color-info: oklch(78% 0.154 211.53);
-  --color-info-content: oklch(98% 0.019 200.873);
-  --color-success: oklch(76% 0.177 163.223);
-  --color-success-content: oklch(98% 0.018 155.826);
-  --color-warning: oklch(88% 0.13 80);
-  --color-warning-content: oklch(98% 0.022 95.277);
-  --color-error: oklch(75% 0.15 20);
-  --color-error-content: oklch(96% 0.015 12.422);
+
+  /* Status colors */
+  --color-info: oklch(62% 0.17 245);
+  --color-info-content: oklch(98% 0.01 245);
+
+  --color-success: oklch(62% 0.17 155);
+  --color-success-content: oklch(98% 0.01 155);
+
+  --color-warning: oklch(78% 0.145 75);
+  --color-warning-content: oklch(25% 0.04 75);
+
+  --color-error: oklch(58% 0.2 25);
+  --color-error-content: oklch(98% 0.01 25);
+
+  /* Shape — conservative radii for a classical feel */
   --radius-selector: 0.25rem;
-  --radius-field: 0.5rem;
+  --radius-field: 0.375rem;
   --radius-box: 0.5rem;
+
+  /* Sizes */
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
+
+  /* Border */
   --border: 1px;
+
+  /* Effects */
   --depth: 1;
   --noise: 0;
 }
+
+/* ───────────────────────────── Dark ────────────────────────────── */
 @plugin "daisyui/theme" {
   name: "vulgatae-dark";
   default: false;
   prefersdark: true;
-  color-scheme: "dark";
+  color-scheme: dark;
 
-  /* Dark neutrals */
-  --color-base-100: oklch(18% 0.01 260);   /* main background */
-  --color-base-200: oklch(24% 0.015 260);  /* surface 1 */
-  --color-base-300: oklch(30% 0.02 260);   /* surface 2 */
-  --color-base-content: oklch(95% 0.01 260); /* main text */
+  /* Surfaces — deep navy-tinted slate */
+  --color-base-100: oklch(18% 0.015 265);    /* page background */
+  --color-base-200: oklch(23% 0.018 265);    /* cards, raised surfaces */
+  --color-base-300: oklch(28% 0.02 265);     /* borders, dividers */
+  --color-base-content: oklch(93% 0.008 80); /* body text — warm near-white */
 
-  /* Keep brand colors consistent with light theme */
-  --color-primary: oklch(60% 0.091 267.935);
-  --color-primary-content: oklch(98% 0.018 155.826);
-  --color-secondary: oklch(60% 0.12 70);
-  --color-secondary-content: oklch(96% 0.016 293.756);
-  --color-accent: oklch(60% 0.118 184.704);
-  --color-accent-content: oklch(98% 0.031 120.757);
+  /* Primary — brighter navy for legibility on dark */
+  --color-primary: oklch(72% 0.1 268);
+  --color-primary-content: oklch(15% 0.04 268);
+
+  /* Secondary — brand gold, slightly lightened */
+  --color-secondary: oklch(70% 0.135 72);
+  --color-secondary-content: oklch(18% 0.04 72);
+
+  /* Accent — teal, lifted for contrast */
+  --color-accent: oklch(68% 0.118 185);
+  --color-accent-content: oklch(15% 0.03 185);
 
   /* Neutral */
-  --color-neutral: oklch(35% 0.015 285.786);
-  --color-neutral-content: oklch(95% 0 0);
+  --color-neutral: oklch(32% 0.015 265);
+  --color-neutral-content: oklch(93% 0 0);
 
-  /* Info — softer for dark */
-  --color-info: oklch(65% 0.15 215);
-  --color-info-content: oklch(95% 0.015 200);
+  /* Status colors — softened for dark backgrounds */
+  --color-info: oklch(68% 0.15 245);
+  --color-info-content: oklch(15% 0.03 245);
 
-  /* Success */
-  --color-success: oklch(65% 0.17 150);
-  --color-success-content: oklch(95% 0.018 150);
+  --color-success: oklch(68% 0.17 155);
+  --color-success-content: oklch(15% 0.03 155);
 
-  /* Warning */
-  --color-warning: oklch(75% 0.14 80);
-  --color-warning-content: oklch(15% 0.02 80);
+  --color-warning: oklch(75% 0.14 75);
+  --color-warning-content: oklch(18% 0.04 75);
 
-  /* Error */
-  --color-error: oklch(60% 0.15 20);
-  --color-error-content: oklch(95% 0.015 20);
+  --color-error: oklch(65% 0.18 25);
+  --color-error-content: oklch(95% 0.01 25);
 
-  /* Shape & size tokens */
+  /* Shape — same as light for consistency */
   --radius-selector: 0.25rem;
-  --radius-field: 0.5rem;
+  --radius-field: 0.375rem;
   --radius-box: 0.5rem;
+
+  /* Sizes */
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
+
+  /* Border */
   --border: 1px;
+
+  /* Effects */
   --depth: 1;
   --noise: 0;
 }
