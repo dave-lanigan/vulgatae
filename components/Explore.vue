@@ -9,7 +9,7 @@
               <div
                 v-for="card in cards"
                 :key="card.title"
-                class="card w-72 sm:w-80 md:w-80 lg:w-80 min-h-44 bg-transparent shadow-md border border-base-300 transition-colors group overflow-hidden inline-block cursor-pointer whitespace-normal"
+                class="card w-72 sm:w-80 md:w-80 lg:w-80 min-h-44 bg-transparent shadow-2xl border border-base-300 transition-colors group overflow-hidden inline-block cursor-pointer whitespace-normal"
               >
                 <NuxtLink :to="`/${card.path}`" class="h-full block">
                   <div class="card-body flex flex-col items-start justify-between p-4 h-full">
