@@ -1,7 +1,7 @@
 <template>
     <div class="mx-auto max-w-full">
         <div class="m-4">
-          <h2 class="text-2xl font-bold font-serif text-primary">Explore Vulgatae</h2>
+          <h2 class="text-lg sm:text-2xl font-bold font-serif text-primary">Explore Vulgatae</h2>
         </div>
 
           <div class="m-6 overflow-x-auto">

@@ -1,7 +1,7 @@
 <template>
   <div class="mx-auto max-w-full">
     <div class="m-6">
-      <h2 class="text-2xl font-bold font-serif text-primary">{{ sectionTitle }}</h2>
+      <h2 class="text-lg sm:text-2xl font-bold font-serif text-primary">{{ sectionTitle }}</h2>
     </div>
 
     <div class="m-6">
@@ -11,20 +11,19 @@
       >
         <div class="card-body flex flex-col items-start gap-2 p-5 sm:p-6 h-full">
           <div class="w-full">
-            <h3 class="card-title text-left text-accent text-xl font-bold leading-tight mb-1">{{ locationLabel }}</h3>
+            <h3 class="card-title text-left text-secondary text-lg font-bold leading-tight mb-0.5">{{ locationLabelLatin }}</h3>
+            <p class="text-left text-xs text-base-content/50 uppercase tracking-wider mb-1">{{ locationLabel }}</p>
           </div>
 
-          <p class="text-left w-full text-2xl sm:text-lg text-primary font-serif leading-snug break-words line-clamp-3 mb-1">
-            {{ latinPreview }}
-          </p>
-
-          <p class="text-left w-full text-xl sm:text-sm text-base-content/85 mb-1 leading-relaxed break-words line-clamp-2">
+          <p class="verse-english text-left w-full text-base-content/85 mb-1 leading-relaxed break-words line-clamp-2" style="font-size: large;">
             {{ versePreview }}
           </p>
 
           <div class="w-full mt-1">
             <div class="flex items-center justify-end w-full">
-              <span class="btn btn-sm btn-outline btn-primary rounded-full normal-case font-normal">{{ ctaLabel }}</span>
+              <span class="text-sm text-accent font-medium inline-flex items-center gap-1 border-b border-accent pb-0.5">
+                {{ ctaLabel }} <Icon name="material-symbols:arrow-forward" size="14" />
+              </span>
             </div>
           </div>
         </div>
@@ -55,6 +54,12 @@ const locationLabel = computed(() => {
   const title = currentBook.value?.title || 'Genesis'
   if (!lastReadVerse.value) return `${title} 1:1`
   return `${title} ${lastReadVerse.value.chapter}:${lastReadVerse.value.verse}`
+})
+
+const locationLabelLatin = computed(() => {
+  const titleLatin = currentBook.value?.titleLatin || 'Genesis'
+  if (!lastReadVerse.value) return `${titleLatin} 1:1`
+  return `${titleLatin} ${lastReadVerse.value.chapter}:${lastReadVerse.value.verse}`
 })
 
 const versePreview = computed(() => {
@@ -98,6 +103,10 @@ const metaLabel = computed(() => {
 
 .font-serif {
   font-family: 'EB Garamond', serif;
+}
+
+.verse-english {
+  font-family: 'Crimson Text', serif;
 }
 
 .line-clamp-2 {
