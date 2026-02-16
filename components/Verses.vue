@@ -26,6 +26,36 @@
       <div v-if="pending">Loading...</div>
       <div v-if="error">Error loading verses</div>
     </div>
+
+    <!-- Chapter Navigation -->
+    <div class="flex justify-between items-center w-full mt-10 mb-6 px-2">
+      <NuxtLink
+        v-if="hasPrevChapter"
+        :to="`/books/${book}/chapters/${prevChapter}`"
+        class="btn btn-ghost gap-1"
+      >
+        <Icon name="material-symbols:arrow-back" size="18" />
+        Chapter {{ prevChapter }}
+      </NuxtLink>
+      <span v-else></span>
+
+      <NuxtLink
+        :to="`/books/${book}/chapters`"
+        class="btn btn-ghost text-xs"
+      >
+        All Chapters
+      </NuxtLink>
+
+      <NuxtLink
+        v-if="hasNextChapter"
+        :to="`/books/${book}/chapters/${nextChapter}`"
+        class="btn btn-ghost gap-1"
+      >
+        Chapter {{ nextChapter }}
+        <Icon name="material-symbols:arrow-forward" size="18" />
+      </NuxtLink>
+      <span v-else></span>
+    </div>
   </div>
 </template>
 
@@ -39,6 +69,13 @@ const activeTab = ref('verses')
 const { data: chapters } = await useFetch(`/api/books/${book}/chapters/`)
 const chapterHeader = chapters.value[chapterNumber - 1].header
 const { data: verses, pending, error } = await useFetch(`/api/books/${book}/chapters/${chapterNumber}`)
+
+const currentChapter = parseInt(chapterNumber)
+const totalChapters = chapters.value?.length || 0
+const hasPrevChapter = computed(() => currentChapter > 1)
+const hasNextChapter = computed(() => currentChapter < totalChapters)
+const prevChapter = computed(() => currentChapter - 1)
+const nextChapter = computed(() => currentChapter + 1)
 
 const englishJoined = computed(() =>
   (verses.value || []).map(v => `${v.english}<sup class="verse-number">[${v.number}]</sup>`).join(' ')
