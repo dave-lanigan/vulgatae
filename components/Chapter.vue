@@ -53,7 +53,7 @@ const convertNumberToRomanNumerals = (num) => {
 .chapter-card-horizontal {
   min-height: 64px;
   max-width: 480px;
-  margin: 8px auto;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
