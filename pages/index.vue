@@ -2,6 +2,7 @@
   <div class="min-h-screen flex flex-col items-center justify-center">
     <Search />
     <div class="max-w-5xl w-full space-y-4">
+      <DailyVerse />
       <ContinueReading />
       <Explore class="mt-8" />
       <!-- <div class="divider font-serif"></div>
@@ -14,6 +15,7 @@
 
 <script setup>
 import Explore from '~/components/Explore.vue';
+import DailyVerse from '~/components/DailyVerse.vue';
 import ContinueReading from '~/components/ContinueReading.vue';
 import Books from '~/components/Books.vue';
 import MassReadings from '~/components/MassReadings.vue';
