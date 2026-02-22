@@ -43,7 +43,7 @@
           <!-- Input Field -->
           <input
             type="text"
-            placeholder="Search the Vulgate..."
+            :placeholder="currentSearchPlaceholder"
             class="flex-1 py-3 text-base outline-none placeholder-gray-400 bg-transparent font-serif"
             v-model="searchQuery"
             @keyup.enter="performSearch"
@@ -163,12 +163,45 @@ let searchTimeout
 // Rotating text functionality
 const rotatingTexts = ['vulgatae', '/wʊlˈɡaː.te/', 'vool-GAH-teh']
 const currentRotatingText = ref(rotatingTexts[0])
+const searchPlaceholders = ['Search the Vulgate...', 'Ask a question...']
+const currentSearchPlaceholder = ref('')
 let rotationIndex = 0
 let rotationInterval
+let searchTypingTimeout
+let searchPlaceholderIndex = 0
+let searchPlaceholderCharIndex = 0
+let isDeletingPlaceholder = false
 
 function rotateText() {
   rotationIndex = (rotationIndex + 1) % rotatingTexts.length
   currentRotatingText.value = rotatingTexts[rotationIndex]
+}
+
+function typeSearchPlaceholder() {
+  const phrase = searchPlaceholders[searchPlaceholderIndex]
+  let nextDelay = 55
+
+  if (!isDeletingPlaceholder) {
+    searchPlaceholderCharIndex += 1
+    currentSearchPlaceholder.value = phrase.slice(0, searchPlaceholderCharIndex)
+
+    if (searchPlaceholderCharIndex >= phrase.length) {
+      isDeletingPlaceholder = true
+      nextDelay = 1200
+    }
+  } else {
+    searchPlaceholderCharIndex -= 1
+    currentSearchPlaceholder.value = phrase.slice(0, Math.max(0, searchPlaceholderCharIndex))
+    nextDelay = 35
+
+    if (searchPlaceholderCharIndex <= 0) {
+      isDeletingPlaceholder = false
+      searchPlaceholderIndex = (searchPlaceholderIndex + 1) % searchPlaceholders.length
+      nextDelay = 300
+    }
+  }
+
+  searchTypingTimeout = setTimeout(typeSearchPlaceholder, nextDelay)
 }
 
 const quickSearches = ['amor', 'pax', 'veritas', 'vita', 'lux', 'caritas']
@@ -367,6 +400,7 @@ onMounted(() => {
   document.addEventListener('click', handleDocClick)
   // Start text rotation
   rotationInterval = setInterval(rotateText, 2000)
+  typeSearchPlaceholder()
 })
 
 onBeforeUnmount(() => {
@@ -375,6 +409,9 @@ onBeforeUnmount(() => {
   // Clear rotation interval
   if (rotationInterval) {
     clearInterval(rotationInterval)
+  }
+  if (searchTypingTimeout) {
+    clearTimeout(searchTypingTimeout)
   }
 })
 </script>
