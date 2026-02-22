@@ -1,3 +1,5 @@
+import db from './dbClient.js'
+
 const ASK_AI_CACHE_TTL_MS = 15 * 60 * 1000
 
 if (!globalThis.__askAiCache) {
@@ -39,6 +41,101 @@ function setCachedAnswer(cacheKey, answer) {
   })
 }
 
+function parseBibleReference(input) {
+  const trimmed = input.trim()
+  const chapterVerse = /^(\d+):(\d+)(?:\s*[-–]\s*\d+)?$/
+  const bookChapterVerse = /^(.+?)\s+(\d+)(?::(\d+))?(?:\s*[-–]\s*\d+)?$/
+
+  let match = trimmed.match(chapterVerse)
+  if (match) {
+    return {
+      chapter: Number(match[1]),
+      verse: Number(match[2]),
+      bookName: null,
+    }
+  }
+
+  match = trimmed.match(bookChapterVerse)
+  if (match) {
+    return {
+      bookName: match[1].trim().toLowerCase(),
+      chapter: Number(match[2]),
+      verse: match[3] ? Number(match[3]) : null,
+    }
+  }
+
+  return null
+}
+
+function loadBibleContext(query) {
+  const parsed = parseBibleReference(query)
+
+  const baseSelect = `
+    SELECT
+      b.title AS title,
+      b.title_latin AS titleLatin,
+      v.chapter,
+      v.verse,
+      v.latin,
+      v.english
+    FROM verses v
+    JOIN books b ON v.book = b.number
+  `
+
+  if (parsed?.bookName && parsed.chapter) {
+    const params = [
+      parsed.bookName,
+      parsed.bookName,
+      parsed.bookName,
+      parsed.bookName,
+      parsed.chapter,
+    ]
+
+    let sql = `${baseSelect}
+      WHERE (
+        lower(b.title) = ? OR
+        lower(b.title_latin) = ? OR
+        lower(COALESCE(b.alt_title, '')) = ? OR
+        lower(COALESCE(b.book, '')) = ?
+      )
+      AND v.chapter = ?
+    `
+
+    if (parsed.verse) {
+      sql += ' AND v.verse = ?'
+      params.push(parsed.verse)
+    }
+
+    sql += ' ORDER BY v.verse ASC LIMIT 8'
+    return db.prepare(sql).all(...params)
+  }
+
+  if (parsed?.chapter && parsed.verse) {
+    return db
+      .prepare(`${baseSelect}
+        WHERE v.chapter = ? AND v.verse = ?
+        ORDER BY v.book ASC
+        LIMIT 8
+      `)
+      .all(parsed.chapter, parsed.verse)
+  }
+
+  const like = `%${query.toLowerCase()}%`
+  return db
+    .prepare(`${baseSelect}
+      WHERE (
+        lower(v.english) LIKE ? OR
+        lower(v.latin) LIKE ? OR
+        lower(b.title) LIKE ? OR
+        lower(b.title_latin) LIKE ? OR
+        lower(COALESCE(b.alt_title, '')) LIKE ?
+      )
+      ORDER BY v.book ASC, v.chapter ASC, v.verse ASC
+      LIMIT 8
+    `)
+    .all(like, like, like, like, like)
+}
+
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
   const geminiApiKey = config.geminiApiKey
@@ -52,7 +149,8 @@ export default defineEventHandler(async (event) => {
 
   const body = await readBody(event)
   const query = body?.query?.trim()
-  const contextHits = Array.isArray(body?.contextHits) ? body.contextHits.slice(0, 5) : []
+
+  const contextHits = loadBibleContext(query || '')
   const cacheKey = JSON.stringify({
     query: query?.toLowerCase(),
     context: contextHits.map((hit) => ({
