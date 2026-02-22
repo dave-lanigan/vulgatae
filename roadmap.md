@@ -1,7 +1,8 @@
 ## Roadmap
 ### Features
-- [] Daily bible verse container
+- [X] Daily bible verse container
 - [] Pray the psalms section
+  - [X] Add section 
   - [] [psalms-english](https://www.youtube.com/watch?v=L4_ehC_VEPc&list=PLTznj9fyCSlDWxCmrBpOfEkXwIeWIe3I0&index=2&ab_channel=ChantsandRants)
 - [] Daily Mass Readings (Traditional)
   - [] ETL DMR
@@ -17,12 +18,8 @@
 - [] AI Bible Verse Search + trending searches
 
 ### Fixes
-- [] Cannot type in a book/chapter/verse to go to it
-- [] Fix CSS for finding verses
-- [] Fix chapters so the words arent hidden
-- [] light and dark theme for site - add toggle for this.
-- [] Other
-  - [] add tooltips
-  - [] use local storage + add my vulgatae that tracks verses you read
-  - [] navigation to the next chapter at the bottom of the 
-  - [] fix theme overall. come up with something nice and fancy.
+- [X] Cannot type in a book/chapter/verse to go to it
+- [X] Fix CSS for finding verses
+- [X] Other
+  - [X] use local storage + add my vulgatae that tracks verses you read
+  - [X] navigation to the next chapter at the bottom of the
