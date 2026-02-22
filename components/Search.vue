@@ -65,44 +65,71 @@
           </button>
         </div>
         
-        <!-- Search Results -->
-        <div v-if="searchResults.length > 0" class="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 max-h-96 overflow-y-auto z-50">
-          <div class="p-2">
-            <div class="text-xs text-gray-500 px-2 py-1">
-              Found {{ searchResults.length }} results
-            </div>
-            <div
-              v-for="hit in searchResults"
-              :key="hit.objectID || `${hit.book}-${hit.chapter}-${hit.verse}`"
-              class="p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 text-left"
+        <div v-if="searchQuery.trim() || searchResults.length > 0 || (showHistory && searchHistoryList.length > 0) || aiAnswer || aiError" class="absolute top-full left-0 right-0 mt-2 z-50">
+          <div v-if="searchQuery.trim()" class="p-2 bg-white rounded-lg shadow-xl border border-gray-200">
+            <button
+              class="w-full p-3 rounded-lg border border-secondary/40 bg-secondary/10 hover:bg-secondary/20 text-left transition-colors disabled:opacity-60"
+              @click="askAI"
+              :disabled="isAskingAI || !searchQuery.trim()"
             >
-              <NuxtLink
-                :to="`/books/${hit.book}/chapters/${hit.chapter}#verse-${hit.verse}`"
-                class="block"
-                @click="clearResults"
-              >
-                <div class="text-sm font-medium text-blue-900 mb-1">
-                  <span v-html="hit._highlightResult?.title?.value || hit.title"></span> {{ hit.chapter }}:{{ hit.verse }}
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <Icon name="material-symbols:auto-awesome" size="16" class="text-secondary" />
+                  <span class="text-sm font-medium text-primary">Ask AI</span>
                 </div>
-                <div class="text-sm text-gray-700 mb-1" v-html="hit._highlightResult?.latin?.value || hit.latin"></div>
-                <div class="text-xs text-gray-500" v-html="hit._highlightResult?.english?.value || hit.english"></div>
-              </NuxtLink>
+                <span class="text-xs text-gray-600">{{ isAskingAI ? 'Thinking…' : 'About this search' }}</span>
+              </div>
+            </button>
+
+            <div v-if="aiAnswer" class="mt-2 p-3 rounded-lg border border-base-300 bg-base-100">
+              <div class="text-xs uppercase tracking-wider text-secondary mb-1">AI Answer</div>
+              <p class="text-sm text-base-content/90 whitespace-pre-line">{{ aiAnswer }}</p>
+            </div>
+
+            <div v-if="aiError" class="mt-2 p-3 rounded-lg border border-error/30 bg-error/10 text-sm text-error">
+              {{ aiError }}
             </div>
           </div>
-        </div>
 
-        <!-- Search History -->
-        <div v-else-if="showHistory && searchHistoryList.length > 0" class="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 max-h-64 overflow-y-auto z-50">
-          <div class="p-2">
-            <div class="text-xs text-gray-500 px-2 py-1 font-serif">Recent searches</div>
-            <div
-              v-for="(term, i) in searchHistoryList"
-              :key="i"
-              class="px-3 py-2 hover:bg-gray-50 cursor-pointer text-sm text-gray-700 font-serif flex items-center gap-2"
-              @mousedown.prevent="useHistoryItem(term)"
-            >
-              <Icon name="lucide:history" size="14" class="text-gray-400 flex-shrink-0" />
-              {{ term }}
+          <!-- Search Results -->
+          <div v-if="searchResults.length > 0" class="mt-2 bg-white rounded-lg shadow-xl border border-gray-200 max-h-96 overflow-y-auto">
+            <div class="p-2">
+              <div class="text-xs text-gray-500 px-2 py-1">
+                Found {{ searchResults.length }} results
+              </div>
+              <div
+                v-for="hit in searchResults"
+                :key="hit.objectID || `${hit.book}-${hit.chapter}-${hit.verse}`"
+                class="p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 text-left"
+              >
+                <NuxtLink
+                  :to="`/books/${hit.book}/chapters/${hit.chapter}#verse-${hit.verse}`"
+                  class="block"
+                  @click="clearResults"
+                >
+                  <div class="text-sm font-medium text-blue-900 mb-1">
+                    <span v-html="hit._highlightResult?.title?.value || hit.title"></span> {{ hit.chapter }}:{{ hit.verse }}
+                  </div>
+                  <div class="text-sm text-gray-700 mb-1" v-html="hit._highlightResult?.latin?.value || hit.latin"></div>
+                  <div class="text-xs text-gray-500" v-html="hit._highlightResult?.english?.value || hit.english"></div>
+                </NuxtLink>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search History -->
+          <div v-else-if="showHistory && searchHistoryList.length > 0" class="mt-2 bg-white rounded-lg shadow-xl border border-gray-200 max-h-64 overflow-y-auto">
+            <div class="p-2">
+              <div class="text-xs text-gray-500 px-2 py-1 font-serif">Recent searches</div>
+              <div
+                v-for="(term, i) in searchHistoryList"
+                :key="i"
+                class="px-3 py-2 hover:bg-gray-50 cursor-pointer text-sm text-gray-700 font-serif flex items-center gap-2"
+                @mousedown.prevent="useHistoryItem(term)"
+              >
+                <Icon name="lucide:history" size="14" class="text-gray-400 flex-shrink-0" />
+                {{ term }}
+              </div>
             </div>
           </div>
         </div>
@@ -127,6 +154,9 @@ const searchResults = ref([])
 const isSearching = ref(false)
 const supportsVoice = ref(false)
 const isListening = ref(false)
+const isAskingAI = ref(false)
+const aiAnswer = ref('')
+const aiError = ref('')
 let recognition = null
 let searchTimeout
 
@@ -196,6 +226,8 @@ function parseVerseReference(input) {
 async function performSearch() {
   if (!$searchIndex || !searchQuery.value.trim() || isSearching.value) return
   isSearching.value = true
+  aiAnswer.value = ''
+  aiError.value = ''
   try {
     const { query, filters } = parseVerseReference(searchQuery.value)
     const searchOptions = {
@@ -220,9 +252,44 @@ async function performSearch() {
   }
 }
 
+async function askAI() {
+  if (!searchQuery.value.trim() || isAskingAI.value) return
+
+  isAskingAI.value = true
+  aiAnswer.value = ''
+  aiError.value = ''
+
+  try {
+    const contextHits = searchResults.value.slice(0, 5).map((hit) => ({
+      title: hit.title,
+      chapter: hit.chapter,
+      verse: hit.verse,
+      latin: hit.latin,
+      english: hit.english,
+    }))
+
+    const response = await $fetch('/api/ask-ai', {
+      method: 'POST',
+      body: {
+        query: searchQuery.value,
+        contextHits,
+      },
+    })
+
+    aiAnswer.value = response?.answer || 'No answer returned.'
+  } catch (e) {
+    console.error('Ask AI error:', e)
+    aiError.value = e?.data?.statusMessage || e?.statusMessage || 'Unable to get an AI answer right now.'
+  } finally {
+    isAskingAI.value = false
+  }
+}
+
 function handleInput() {
   clearTimeout(searchTimeout)
   showHistory.value = false
+  aiAnswer.value = ''
+  aiError.value = ''
   if (!searchQuery.value.trim()) {
     searchResults.value = []
     return
@@ -238,6 +305,8 @@ function quickSearch(term) {
 function clearResults() {
   searchResults.value = []
   showHistory.value = false
+  aiAnswer.value = ''
+  aiError.value = ''
 }
 
 function stopVoiceSearch() {

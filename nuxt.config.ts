@@ -65,6 +65,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-08-10',
   devtools: { enabled: true },
   runtimeConfig: {
+    geminiApiKey: process.env.NUXT_GEMINI_API_KEY || process.env.GEMINI_API_KEY || '',
     public: {
       algoliaApplicationId: process.env.NUXT_PUBLIC_ALGOLIA_APPLICATION_ID || '',
       algoliaSearchApiKey: process.env.NUXT_PUBLIC_ALGOLIA_SEARCH_API_KEY || '',
