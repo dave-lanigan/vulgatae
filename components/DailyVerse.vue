@@ -6,11 +6,11 @@
 
     <div class="m-6" v-if="verse">
       <!-- Verse card – mirrors Verse.vue layout inside a card -->
-      <div class="card w-full bg-transparent shadow-[0_6px_16px_rgba(0,0,0,0.18)] border border-base-300">
+      <div class="card rounded-3xl w-full bg-white shadow-[0_6px_16px_rgba(0,0,0,0.18)] border border-[#b6862c]/20">
         <div class="card-body p-4 sm:p-6">
           <!-- Book name + Date -->
           <div class="flex items-center justify-between mb-2">
-            <NuxtLink :to="verseLink" class="text-lg text-secondary font-bold hover:underline">{{ verse.bookTitle }} {{ verse.chapter }}:{{ verse.verse }}</NuxtLink>
+            <NuxtLink :to="verseLink" class="text-lg text-accent font-bold hover:underline">{{ verse.bookTitle }} {{ verse.chapter }}:{{ verse.verse }}</NuxtLink>
             <span class="text-xs text-base-content/50 uppercase tracking-wider">{{ todayFormatted }}</span>
           </div>
           <div class="flex flex-col sm:flex-row items-stretch min-h-full w-full verse-container">
@@ -44,6 +44,11 @@
               <div class="verse-latin text-right text-2xl sm:text-lg m-4" style="font-size: x-large;">
                 {{ verse.latin }}
               </div>
+              <div class="flex items-center justify-center my-1">
+                <div class="h-px w-8 bg-[#b6862c]/25"></div>
+                <span class="mx-2 text-[#b6862c]/40 text-xs">†</span>
+                <div class="h-px w-8 bg-[#b6862c]/25"></div>
+              </div>
               <div class="verse-english text-left text-xl sm:text-sm m-4" style="font-size: large;">
                 {{ verse.english }}
               </div>
@@ -76,7 +81,7 @@
       </div>
     </div>
     <div v-else-if="pending" class="m-6">
-      <div class="card w-full bg-transparent shadow-[0_6px_16px_rgba(0,0,0,0.18)] border border-base-300">
+      <div class="card rounded-3xl w-full bg-transparent shadow-[0_6px_16px_rgba(0,0,0,0.18)] border border-base-300">
         <div class="card-body p-4 sm:p-6 animate-pulse">
           <div class="flex flex-col sm:flex-row items-stretch min-h-full w-full">
             <div class="flex flex-row sm:flex-col gap-2 sm:gap-1 sm:mb-0">
@@ -281,6 +286,13 @@ onMounted(async () => {
   font-family: 'EB Garamond', serif;
   font-weight: 500;
   letter-spacing: 0.01em;
+}
+
+.verse-latin::first-letter {
+  font-size: 1.8em;
+  font-weight: 600;
+  line-height: 1;
+  color: oklch(62% 0.135 72);
 }
 
 .verse-english {

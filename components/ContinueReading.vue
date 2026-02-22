@@ -7,22 +7,25 @@
     <div class="m-6">
       <NuxtLink
         :to="continuePath"
-        class="card w-full bg-transparent shadow-[0_6px_16px_rgba(0,0,0,0.18)] border border-base-300 transition-colors group block"
+        class="card rounded-xl w-full bg-gradient-to-br from-accent via-accent to-primary shadow-[0_8px_22px_rgba(0,0,0,0.2)] border border-secondary/50 transition-colors group block text-accent-content"
       >
         <div class="card-body flex flex-col items-start gap-2 p-5 sm:p-6 h-full">
           <div class="w-full">
-            <h3 class="card-title text-left text-secondary text-lg font-bold leading-tight mb-0.5">{{ locationLabelLatin }}</h3>
-            <p class="text-left text-xs text-base-content/50 uppercase tracking-wider mb-1">{{ locationLabel }}</p>
+            <h3 class="card-title text-left text-accent-content text-lg font-semibold leading-tight mb-0.5">{{ locationLabelLatin }}</h3>
+            <p class="text-left text-xs text-accent-content/80 uppercase tracking-wider mb-2">{{ locationLabel }}</p>
+            <div class="flex flex-wrap items-center gap-2 mb-1">
+              <span class="badge badge-sm border-0 bg-base-100/90 text-primary">{{ metaLabel }}</span>
+            </div>
           </div>
 
-          <p class="verse-english text-left w-full text-base-content/85 mb-1 leading-relaxed break-words line-clamp-2" style="font-size: large;">
+          <p class="verse-english text-left w-full text-accent-content/90 mb-1 leading-relaxed break-words line-clamp-2" style="font-size: large;">
             {{ versePreview }}
           </p>
 
           <div class="w-full mt-1">
             <div class="flex items-center justify-end w-full">
-              <span class="text-sm text-accent font-medium inline-flex items-center gap-1 border-b border-accent pb-0.5">
-                {{ ctaLabel }} <Icon name="material-symbols:arrow-forward" size="14" />
+              <span class="btn btn-secondary btn-sm border-0 inline-flex items-center gap-1 font-normal">
+                {{ ctaLabel }}
               </span>
             </div>
           </div>

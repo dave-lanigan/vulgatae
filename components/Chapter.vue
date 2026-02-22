@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     :to="`/books/${chapter.book}/chapters/${chapter.chapter}`"
-    class="chapter-card-horizontal group bg-white/80 cursor-pointer rounded-xl px-6 py-4 flex flex-col w-full max-w-xl mx-auto border-2 border-gray-200 hover:border-primary"
+    class="chapter-card-horizontal group bg-white/80 cursor-pointer rounded-lg px-6 py-4 flex flex-col w-full max-w-xl mx-auto border-2 border-gray-200 hover:border-primary"
   >
     <div class="flex items-center w-full">
       <Icon 

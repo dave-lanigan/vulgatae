@@ -12,7 +12,7 @@
     </div>
     
     <!-- Content -->
-    <div class="relative z-10 text-center w-full mx-auto px-6">
+    <div class="relative z-10 text-center w-full mx-auto px-6 py-8 sm:py-10">
       
       <!-- Title -->
       <h1 class="text-5xl md:text-6xl font-bold text-black font-serif p-4">
@@ -27,7 +27,7 @@
 
       <!-- Search Bar -->
       <div class="relative max-w-3xl mx-auto">
-        <div class="flex items-center bg-white rounded-full overflow-hidden">
+        <div class="flex items-center bg-white/95 rounded-full overflow-hidden shadow-lg ring-1 ring-secondary/25 backdrop-blur-sm transition-all duration-200 focus-within:ring-secondary/45">
           <!-- Search Icon -->
           <button 
             class="pl-5 pr-2 flex items-center h-full hover:opacity-70 transition-opacity cursor-pointer disabled:opacity-50"
@@ -44,12 +44,25 @@
           <input
             type="text"
             placeholder="Search the Vulgate..."
-            class="flex-1 py-2 text-base outline-none placeholder-gray-400 bg-transparent font-serif"
+            class="flex-1 py-3 text-base outline-none placeholder-gray-400 bg-transparent font-serif"
             v-model="searchQuery"
             @keyup.enter="performSearch"
             @input="handleInput"
             @focus="handleFocus"
           />
+          <!-- Voice Search -->
+          <button
+            class="pr-5 pl-2 flex items-center h-full hover:opacity-70 transition-opacity cursor-pointer disabled:opacity-40"
+            @click="toggleVoiceSearch"
+            :disabled="!supportsVoice"
+            :title="supportsVoice ? (isListening ? 'Stop voice search' : 'Start voice search') : 'Voice search unavailable in this browser'"
+          >
+            <Icon
+              name="material-symbols:mic"
+              size="20"
+              :class="isListening ? 'text-error' : 'text-accent'"
+            />
+          </button>
         </div>
         
         <!-- Search Results -->
@@ -112,6 +125,9 @@ const showHistory = ref(false)
 const searchQuery = ref('')
 const searchResults = ref([])
 const isSearching = ref(false)
+const supportsVoice = ref(false)
+const isListening = ref(false)
+let recognition = null
 let searchTimeout
 
 // Rotating text functionality
@@ -224,18 +240,68 @@ function clearResults() {
   showHistory.value = false
 }
 
+function stopVoiceSearch() {
+  if (recognition && isListening.value) {
+    recognition.stop()
+  }
+}
+
+function toggleVoiceSearch() {
+  if (!supportsVoice.value || !recognition) return
+  if (isListening.value) {
+    stopVoiceSearch()
+    return
+  }
+  try {
+    recognition.start()
+  } catch (_) {
+    // Ignore repeated start errors while recognition is already active.
+  }
+}
+
 function handleDocClick(e) {
   const container = e.target.closest('.relative.max-w-3xl')
   if (!container) clearResults()
 }
 
 onMounted(() => {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+  if (SpeechRecognition) {
+    supportsVoice.value = true
+    recognition = new SpeechRecognition()
+    recognition.lang = 'en-US'
+    recognition.interimResults = false
+    recognition.maxAlternatives = 1
+    recognition.continuous = false
+
+    recognition.onstart = () => {
+      isListening.value = true
+    }
+
+    recognition.onresult = async (event) => {
+      const transcript = event?.results?.[0]?.[0]?.transcript?.trim()
+      if (!transcript) return
+      searchQuery.value = transcript
+      showHistory.value = false
+      await performSearch()
+    }
+
+    recognition.onend = () => {
+      isListening.value = false
+    }
+
+    recognition.onerror = () => {
+      isListening.value = false
+    }
+  }
+
   document.addEventListener('click', handleDocClick)
   // Start text rotation
   rotationInterval = setInterval(rotateText, 2000)
 })
 
 onBeforeUnmount(() => {
+  stopVoiceSearch()
   document.removeEventListener('click', handleDocClick)
   // Clear rotation interval
   if (rotationInterval) {

@@ -4,9 +4,9 @@
       class="book-card group w-full min-h-20 flex items-center p-4 rounded-lg transition-all duration-200 gap-4">
         
         <!-- Book Icon -->
-        <div class="w-14 h-14 relative text-neutral">
+        <div class="w-14 h-14 relative text-neutral rounded-lg">
             <svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full">
-                <path d="M12 3.5C12.8 3.5 13.5 3.9 13.9 4.6L21.2 17.8C21.8 18.9 21 20.5 19.7 20.5H4.3C3 20.5 2.2 18.9 2.8 17.8L10.1 4.6C10.5 3.9 11.2 3.5 12 3.5Z" />
+              <path d="M12 3.5C12.8 3.5 13.5 3.9 13.9 4.6L21.2 17.8C21.8 18.9 21 20.5 19.7 20.5H4.3C3 20.5 2.2 18.9 2.8 17.8L10.1 4.6C10.5 3.9 11.2 3.5 12 3.5Z" />
             </svg>
             <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[30%] text-black font-bold text-sm pointer-events-none">
                 {{ book.number }}
@@ -16,13 +16,13 @@
         <!-- Book Title -->
         <div class="flex-1 text-left min-w-0">
             <div class="font-semibold text-sm truncate">{{ book.title }}</div>
-            <div class="text-xs italic opacity-70 truncate group-hover:text-primary">{{ book.titleLatin }}</div>
+            <div class="text-xs italic truncate text-secondary group-hover:text-secondary">{{ book.titleLatin }}</div>
         </div>
 
         <!-- Book details -->
         <div class="flex-shrink-0 text-right text-xs opacity-60">
             <div class="font-semibold">{{ book.numberOfChapters }} chapters</div>
-            <div>{{ book.numberOfVerses }} verses</div>
+          <div>{{ book.numberOfVerses }} verses</div>
         </div>
     </NuxtLink>
 </template>
@@ -57,7 +57,6 @@ defineProps({
 }
 
 .book-card:hover svg {
-  /* color: oklch(77% 0.152 181.912); */
   color: oklch(60% 0.118 184.704);
 }
 
